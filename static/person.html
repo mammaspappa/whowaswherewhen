@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Person – WhoWasWhereWhen</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1><a href="/">WhoWasWhereWhen</a></h1>
+        <div style="flex:1"></div>
+        <nav>
+            <a href="/static/contribute.html">Contribute</a>
+        </nav>
+    </header>
+
+    <div class="person-header" id="person-header">
+        <nav class="person-tabs" id="tab-links"></nav>
+        <h2 id="person-name">Loading...</h2>
+        <div class="meta" id="person-meta"></div>
+        <div class="desc" id="person-desc"></div>
+    </div>
+
+    <div class="person-body">
+        <div id="person-map"></div>
+        <div id="person-timeline-list"></div>
+    </div>
+
+    <div class="person-discussion-section">
+        <h3>Discussion</h3>
+        <div id="person-discussions"></div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="/static/js/api.js"></script>
+    <script src="/static/js/discussion.js"></script>
+    <script src="/static/js/person.js"></script>
+</body>
+</html>

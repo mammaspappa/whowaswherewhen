@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhoWasWhereWhen</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1><a href="/">WhoWasWhereWhen</a></h1>
+        <div id="search-container">
+            <input type="text" id="search-input" placeholder="Search historical figures..." autocomplete="off">
+            <div id="search-dropdown" class="dropdown hidden"></div>
+        </div>
+        <nav>
+            <a href="/static/contribute.html">Contribute</a>
+        </nav>
+    </header>
+
+    <main>
+        <aside id="selected-panel">
+            <h3>Selected Figures</h3>
+            <div id="selected-persons"></div>
+            <p id="empty-hint">Search or click a figure below to see their whereabouts on the map.</p>
+            <h3 class="browse-heading">All Figures</h3>
+            <div id="all-persons-list"></div>
+        </aside>
+
+        <div id="map-area">
+            <div id="map"></div>
+            <div id="timeline-container">
+                <button id="play-btn" title="Play/Pause">&#9654;</button>
+                <div id="timeline-slider-wrap">
+                    <input type="range" id="timeline-slider" min="0" max="1000" value="0">
+                    <div id="timeline-label">Select a figure</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="/static/js/api.js"></script>
+    <script src="/static/js/map.js"></script>
+    <script src="/static/js/timeline.js"></script>
+    <script src="/static/js/search.js"></script>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+data/wwww.db
+data/geocache.json
+data/bulk_progress.json
+data/llm_daily_usage.json
+data/book_registry.csv
+data/wikidata_cache/
+data/ia_cache/
+data/gutenberg_*.txt
+__pycache__/
+*.pyc
+.venv/
+.env

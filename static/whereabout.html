@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whereabout – WhoWasWhereWhen</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1><a href="/">WhoWasWhereWhen</a></h1>
+        <div style="flex:1"></div>
+        <nav>
+            <a href="/">Map</a>
+            <a href="/static/contribute.html">Contribute</a>
+        </nav>
+    </header>
+
+    <div class="whereabout-page">
+        <div id="wa-content">
+            <p>Loading...</p>
+        </div>
+        <div id="wa-map"></div>
+        <div id="wa-discussion-section">
+            <h3>Discussion</h3>
+            <div id="wa-discussions"></div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="/static/js/api.js"></script>
+    <script src="/static/js/discussion.js"></script>
+    <script src="/static/js/whereabout.js"></script>
+</body>
+</html>

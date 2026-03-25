@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contribute – WhoWasWhereWhen</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1><a href="/">WhoWasWhereWhen</a></h1>
+        <div style="flex:1"></div>
+        <nav>
+            <a href="/">Map</a>
+        </nav>
+    </header>
+
+    <div class="contribute-page">
+        <h2>Contribute a Whereabout</h2>
+        <p style="margin-bottom:16px;color:#666;font-size:0.9rem">
+            Know where a historical figure was at a particular time? Share it here with a source reference.
+            Contributions are reviewed before appearing on the map.
+        </p>
+
+        <form id="contrib-form">
+            <div class="form-group">
+                <label for="person-name">Historical Figure *</label>
+                <input type="text" id="person-name" name="person_name" required placeholder="e.g. Napoleon Bonaparte">
+            </div>
+
+            <div class="form-group">
+                <label for="place-name">Place *</label>
+                <input type="text" id="place-name" name="place_name" required placeholder="e.g. Waterloo, Belgium">
+                <button type="button" class="btn btn-secondary" style="margin-top:4px;padding:4px 12px;font-size:0.8rem" id="geocode-btn">Geocode</button>
+                <div id="contrib-minimap"></div>
+                <input type="hidden" id="lat" name="latitude">
+                <input type="hidden" id="lon" name="longitude">
+            </div>
+
+            <div class="form-group">
+                <label for="date-input">Date *</label>
+                <input type="text" id="date-input" required placeholder="e.g. 1815, June 18 1815, 1810s, around 1800">
+                <div class="help">Accepts: exact dates, months, years, decades (1810s), approximate (around 1800)</div>
+            </div>
+
+            <div class="form-group">
+                <label for="description">What were they doing there?</label>
+                <textarea id="description" name="description" placeholder="Brief description of their activities at this location"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="source-url">Source URL</label>
+                <input type="url" id="source-url" name="source_url" placeholder="https://...">
+            </div>
+
+            <div class="form-group">
+                <label for="source-title">Source Title *</label>
+                <input type="text" id="source-title" name="source_title" required placeholder="e.g. Wikipedia: Napoleon">
+            </div>
+
+            <div class="form-group">
+                <label for="source-excerpt">Relevant Quote</label>
+                <textarea id="source-excerpt" name="source_excerpt" placeholder="Paste the relevant passage from the source"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="contributor-name">Your Name (optional)</label>
+                <input type="text" id="contributor-name" name="contributor_name">
+            </div>
+
+            <button type="submit" class="btn">Submit Contribution</button>
+            <div id="contrib-status"></div>
+        </form>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="/static/js/api.js"></script>
+    <script src="/static/js/contribute.js"></script>
+</body>
+</html>
