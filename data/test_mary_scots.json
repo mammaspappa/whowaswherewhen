@@ -1,0 +1,295 @@
+{
+  "person": {
+    "name": "Mary, Queen of Scots",
+    "description": "Mary, Queen of Scots (8 December 1542 \u2013 8 February 1587), also known as Mary Stuart[b] or Mary I of Scotland, was Queen of Scotland from 14 December 1542 until her forced abdication on 24 July 1567.",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Mary,_Queen_of_Scots",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Fran%C3%A7ois_Clouet_-_Mary%2C_Queen_of_Scots_%281542-87%29_-_Google_Art_Project.jpg/250px-Fran%C3%A7ois_Clouet_-_Mary%2C_Queen_of_Scots_%281542-87%29_-_Google_Art_Project.jpg"
+  },
+  "datapoints": [
+    {
+      "place_name": "Linlithgow, Scotland",
+      "latitude": 55.977167,
+      "longitude": -3.6006234,
+      "date_start": "1542-12-08",
+      "date_end": "1543-07-27",
+      "date_precision": "day",
+      "date_display": "December 8, 1542 - July 27, 1543",
+      "description": "Mary, Queen of Scots was born and spent her early childhood at Linlithgow Palace.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 3.3 70B) extraction from Wikipedia: Mary, Queen of Scots",
+          "url": "https://en.wikipedia.org/wiki/Mary,_Queen_of_Scots",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "St Michael, Linlithgow, Scotland",
+      "latitude": 55.9782114,
+      "longitude": -3.600364,
+      "date_start": "1542-12",
+      "date_end": "1542-12",
+      "date_precision": "month",
+      "date_display": "December 1542",
+      "description": "Mary was christened at the nearby Church of St Michael.",
+      "confidence": "certain",
+      "location_size": "building",
+      "sources": [
+        {
+          "title": "Groq (Llama 3.3 70B) extraction from Wikipedia: Mary, Queen of Scots",
+          "url": "https://en.wikipedia.org/wiki/Mary,_Queen_of_Scots",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Stirling, Scotland",
+      "latitude": 56.1181242,
+      "longitude": -3.9360012,
+      "date_start": "1543-07-27",
+      "date_end": "1544-05",
+      "date_precision": "month",
+      "date_display": "July 27, 1543 - May 1544",
+      "description": "Mary was taken to Stirling Castle for safety and was crowned in the castle chapel.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 3.3 70B) extraction from Wikipedia: Mary, Queen of Scots",
+          "url": "https://en.wikipedia.org/wiki/Mary,_Queen_of_Scots",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Dunkeld, Scotland",
+      "latitude": 56.5655711,
+      "longitude": -3.5862546,
+      "date_start": "1544-05",
+      "date_end": "1544-05",
+      "date_precision": "month",
+      "date_display": "May 1544",
+      "description": "The Scots took Mary to Dunkeld for safety during the English raids.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 3.3 70B) extraction from Wikipedia: Mary, Queen of Scots",
+          "url": "https://en.wikipedia.org/wiki/Mary,_Queen_of_Scots",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Inchmahome, Scotland",
+      "latitude": 56.1756915,
+      "longitude": -4.298462,
+      "date_start": "1547-09",
+      "date_end": "1547-09",
+      "date_precision": "month",
+      "date_display": "September 1547",
+      "description": "Mary's guardians sent her to Inchmahome Priory for no more than three weeks for her safety.",
+      "confidence": "certain",
+      "location_size": "building",
+      "sources": [
+        {
+          "title": "Groq (Llama 3.3 70B) extraction from Wikipedia: Mary, Queen of Scots",
+          "url": "https://en.wikipedia.org/wiki/Mary,_Queen_of_Scots",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Dumbarton, Scotland",
+      "latitude": 55.9432443,
+      "longitude": -4.5708479,
+      "date_start": "1548-02",
+      "date_end": "1548-08-07",
+      "date_precision": "month",
+      "date_display": "February 1548 - August 7, 1548",
+      "description": "Mary was moved to Dumbarton Castle for her safety.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 3.3 70B) extraction from Wikipedia: Mary, Queen of Scots",
+          "url": "https://en.wikipedia.org/wiki/Mary,_Queen_of_Scots",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Roscoff, France",
+      "latitude": 48.7255816,
+      "longitude": -3.9828983,
+      "date_start": "1548-08",
+      "date_end": "1548-08",
+      "date_precision": "month",
+      "date_display": "August 1548",
+      "description": "Mary arrived in France, at either Roscoff or Saint-Pol-de-L\u00e9on in Brittany.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 3.3 70B) extraction from Wikipedia: Mary, Queen of Scots",
+          "url": "https://en.wikipedia.org/wiki/Mary,_Queen_of_Scots",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Paris, France",
+      "latitude": 48.8588897,
+      "longitude": 2.320041,
+      "date_start": "1548-08",
+      "date_end": "1561-08",
+      "date_precision": "month",
+      "date_display": "August 1548 - August 1561",
+      "description": "Mary spent thirteen years at the French court, where she was raised and educated.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 3.3 70B) extraction from Wikipedia: Mary, Queen of Scots",
+          "url": "https://en.wikipedia.org/wiki/Mary,_Queen_of_Scots",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Leith, Scotland",
+      "latitude": 55.9725499,
+      "longitude": -3.1709492,
+      "date_start": "1561-08",
+      "date_end": "1561-08",
+      "date_precision": "month",
+      "date_display": "August 1561",
+      "description": "Mary returned to Scotland and landed at Leith.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 3.3 70B) extraction from Wikipedia: Mary, Queen of Scots",
+          "url": "https://en.wikipedia.org/wiki/Mary,_Queen_of_Scots",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Edinburgh, Scotland",
+      "latitude": 55.9533456,
+      "longitude": -3.1883749,
+      "date_start": "1561-08",
+      "date_end": "1567-07",
+      "date_precision": "month",
+      "date_display": "August 1561 - July 1567",
+      "description": "Mary ruled Scotland from Edinburgh, facing challenges to her authority.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 3.3 70B) extraction from Wikipedia: Mary, Queen of Scots",
+          "url": "https://en.wikipedia.org/wiki/Mary,_Queen_of_Scots",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Lochleven, Scotland",
+      "latitude": 55.8245241,
+      "longitude": -4.2661672,
+      "date_start": "1567-06",
+      "date_end": "1567-07",
+      "date_precision": "month",
+      "date_display": "June 1567 - July 1567",
+      "description": "Mary was imprisoned in Lochleven Castle after her forced abdication.",
+      "confidence": "certain",
+      "location_size": "building",
+      "sources": [
+        {
+          "title": "Groq (Llama 3.3 70B) extraction from Wikipedia: Mary, Queen of Scots",
+          "url": "https://en.wikipedia.org/wiki/Mary,_Queen_of_Scots",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Carlisle, England",
+      "latitude": 54.8944471,
+      "longitude": -2.9357343,
+      "date_start": "1568-05",
+      "date_end": "1568-07",
+      "date_precision": "month",
+      "date_display": "May 1568 - July 1568",
+      "description": "Mary fled to England, seeking the protection of her cousin, Elizabeth I.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 3.3 70B) extraction from Wikipedia: Mary, Queen of Scots",
+          "url": "https://en.wikipedia.org/wiki/Mary,_Queen_of_Scots",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Bolton, England",
+      "latitude": 53.5782863,
+      "longitude": -2.4300367,
+      "date_start": "1568-07",
+      "date_end": "1569-01",
+      "date_precision": "month",
+      "date_display": "July 1568 - January 1569",
+      "description": "Mary was held under house arrest at Bolton Castle.",
+      "confidence": "certain",
+      "location_size": "building",
+      "sources": [
+        {
+          "title": "Groq (Llama 3.3 70B) extraction from Wikipedia: Mary, Queen of Scots",
+          "url": "https://en.wikipedia.org/wiki/Mary,_Queen_of_Scots",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Tutbury, England",
+      "latitude": 52.8492143,
+      "longitude": -1.7025715,
+      "date_start": "1569-02",
+      "date_end": "1584-09",
+      "date_precision": "month",
+      "date_display": "February 1569 - September 1584",
+      "description": "Mary was moved to Tutbury Castle, where she was kept under close guard.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 3.3 70B) extraction from Wikipedia: Mary, Queen of Scots",
+          "url": "https://en.wikipedia.org/wiki/Mary,_Queen_of_Scots",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Fotheringhay, England",
+      "latitude": 52.5260117,
+      "longitude": -0.4375895,
+      "date_start": "1586-09",
+      "date_end": "1587-02-08",
+      "date_precision": "month",
+      "date_display": "September 1586 - February 8, 1587",
+      "description": "Mary was tried, found guilty, and executed at Fotheringhay Castle.",
+      "confidence": "certain",
+      "location_size": "building",
+      "sources": [
+        {
+          "title": "Groq (Llama 3.3 70B) extraction from Wikipedia: Mary, Queen of Scots",
+          "url": "https://en.wikipedia.org/wiki/Mary,_Queen_of_Scots",
+          "source_type": "ai_extracted"
+        }
+      ]
+    }
+  ]
+}

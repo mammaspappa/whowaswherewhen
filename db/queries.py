@@ -153,13 +153,14 @@ def create_whereabout(data):
     cur = db.execute(
         "INSERT INTO whereabouts (person_id, place_name, latitude, longitude, "
         "date_start, date_end, date_precision, date_display, description, confidence, "
-        "source_text, extraction_method, extraction_model, extracted_at, created_by, "
+        "location_size, source_text, extraction_method, extraction_model, extracted_at, created_by, "
         "raw_date_text, raw_place_text, geocode_source, notes) "
-        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
         (data['person_id'], data['place_name'], data['latitude'], data['longitude'],
          data['date_start'], data['date_end'], data.get('date_precision', 'year'),
          data.get('date_display'), data.get('description'),
          data.get('confidence', 'probable'),
+         data.get('location_size'),
          data.get('source_text'), data.get('extraction_method'),
          data.get('extraction_model'), data.get('extracted_at'),
          data.get('created_by', 'user'), data.get('raw_date_text'),
@@ -176,7 +177,8 @@ def update_whereabout(whereabout_id, data):
     edit_summary = data.pop('edit_summary', None)
 
     updatable = ('place_name', 'latitude', 'longitude', 'date_start', 'date_end',
-                 'date_precision', 'date_display', 'description', 'confidence')
+                 'date_precision', 'date_display', 'description', 'confidence',
+                 'location_size')
     fields = []
     values = []
     for key in updatable:

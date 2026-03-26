@@ -275,12 +275,15 @@ def cmd_discover(args):
     classifications = {}
     if llm_provider:
         print(f"\n--- Classifying {len(all_books)} books with LLM ---")
-        from ingest.free.free_llm_extract import classify_books, SOURCE_CATEGORIES_USEFUL
+        from ingest.free.free_llm_extract import classify_books, SOURCE_CATEGORIES_USEFUL, DEFAULT_MIN_SCORE
         book_dicts = [{'title': t, 'author': a} for _, t, a, _, _ in all_books]
         classifications = classify_books(person_name, book_dicts, provider=llm_provider)
 
-        useful = sum(1 for c in classifications.values() if c in SOURCE_CATEGORIES_USEFUL)
-        print(f"  Classified: {useful} useful, {len(classifications) - useful} rejected")
+        useful = sum(1 for info in classifications.values()
+                     if isinstance(info, dict) and info.get('category') in SOURCE_CATEGORIES_USEFUL
+                     and info.get('score', 0) >= DEFAULT_MIN_SCORE)
+        print(f"  Classified: {useful} useful (score >= {DEFAULT_MIN_SCORE}), "
+              f"{len(classifications) - useful} rejected/low-score")
     else:
         from ingest.free.free_llm_extract import SOURCE_CATEGORIES_USEFUL
 
@@ -288,12 +291,21 @@ def cmd_discover(args):
     print(f"\n--- Saving to registry ---")
     new_count = 0
     for i, (source, title, author, url, identifier) in enumerate(all_books):
-        relevance = classifications.get(i, '')
+        info = classifications.get(i, {})
+        if isinstance(info, dict):
+            relevance = info.get('category', '')
+            score = info.get('score', '')
+        else:
+            relevance = info
+            score = ''
         is_new = log_discovery(source, person_name, title, author, url, identifier,
-                               relevance=relevance)
-        status_str = f"[{relevance}]" if relevance else ""
+                               relevance=relevance, score=score)
+        score_str = f" score={score}" if score else ""
+        status_str = f"[{relevance}{score_str}]" if relevance else ""
         if relevance and relevance not in SOURCE_CATEGORIES_USEFUL:
             status_str += " REJECTED"
+        elif score and int(score) < DEFAULT_MIN_SCORE:
+            status_str += " LOW SCORE"
         if is_new:
             new_count += 1
             print(f"  + {title} ({source}) {status_str}")
@@ -320,10 +332,12 @@ def cmd_extract(args):
     person_name = getattr(args, 'person', None)
     source_filter = getattr(args, 'source', None)
     llm_provider = getattr(args, 'llm', None)
+    validate_provider = getattr(args, 'validate', None)
     dry_run = getattr(args, 'dry_run', False)
     limit = getattr(args, 'limit', None)
+    min_score = getattr(args, 'min_score', 6)
 
-    pending = get_pending(source=source_filter, person=person_name)
+    pending = get_pending(source=source_filter, person=person_name, min_score=min_score)
     if not pending:
         print("No pending books in registry. Run 'discover' first.")
         return
@@ -332,7 +346,7 @@ def cmd_extract(args):
         pending = pending[:limit]
 
     print(f"\n{'='*60}")
-    print(f"Book Extraction: {len(pending)} pending books")
+    print(f"Book Extraction: {len(pending)} pending books (min score: {min_score})")
     if llm_provider:
         print(f"Method: {llm_provider}")
     else:
@@ -438,10 +452,7 @@ def cmd_extract(args):
                         loc['sources'] = [src_dict]
                         datapoints.append(loc)
                 data = {'person': person_data, 'datapoints': datapoints}
-                if not dry_run:
-                    import_data(data, dry_run=False)
-                else:
-                    import_data(data, dry_run=True)
+                import_data(data, dry_run=dry_run, validate_with_llm=validate_provider)
                 log_ingestion(source, identifier, method='pattern',
                               datapoints=len(datapoints), status='ingested')
                 total_dp += len(datapoints)
@@ -489,7 +500,7 @@ def cmd_extract(args):
             datapoints.append(loc)
 
         data = {'person': person_data, 'datapoints': datapoints}
-        import_data(data, dry_run=dry_run)
+        import_data(data, dry_run=dry_run, validate_with_llm=validate_provider)
         log_ingestion(source, identifier, method=method,
                       datapoints=len(datapoints), status='ingested')
         total_dp += len(datapoints)
@@ -634,7 +645,7 @@ Strategies:
     p_llm = subparsers.add_parser('llm', help='Free LLM API extraction')
     add_common_args(p_llm)
     p_llm.add_argument('--provider', default='gemini',
-                       choices=['gemini', 'gemini-flash', 'gemini-3', 'gemini-3.1', 'groq', 'mistral', 'openrouter'],
+                       choices=['gemini', 'gemini-flash', 'gemini-3', 'gemini-3.1', 'groq', 'groq-qwen', 'groq-llama4', 'groq-kimi', 'mistral', 'openrouter'],
                        help='LLM provider (default: gemini)')
     p_llm.set_defaults(func=cmd_llm)
 
@@ -653,7 +664,7 @@ Strategies:
                         help='Comma-separated sources to search (default: all)')
     p_disc.add_argument('--max-books', type=int, default=10,
                         help='Max books per source (default 10)')
-    p_disc.add_argument('--llm', choices=['gemini', 'gemini-flash', 'gemini-3', 'gemini-3.1', 'groq', 'mistral', 'openrouter'],
+    p_disc.add_argument('--llm', choices=['gemini', 'gemini-flash', 'gemini-3', 'gemini-3.1', 'groq', 'groq-qwen', 'groq-llama4', 'groq-kimi', 'mistral', 'openrouter'],
                         help='Use LLM to classify book relevance')
     p_disc.set_defaults(func=cmd_discover)
 
@@ -661,9 +672,13 @@ Strategies:
     p_ext = subparsers.add_parser('extract', help='Process pending books from the registry')
     p_ext.add_argument('--person', help='Only extract for this person')
     p_ext.add_argument('--source', help='Only extract from this source (gutenberg, archive, google_books)')
-    p_ext.add_argument('--llm', choices=['gemini', 'gemini-flash', 'gemini-3', 'gemini-3.1', 'groq', 'mistral', 'openrouter'],
+    p_ext.add_argument('--llm', choices=['gemini', 'gemini-flash', 'gemini-3', 'gemini-3.1', 'groq', 'groq-qwen', 'groq-llama4', 'groq-kimi', 'mistral', 'openrouter'],
                        help='Use LLM for extraction (otherwise pattern matching)')
     p_ext.add_argument('--limit', type=int, help='Max books to process')
+    p_ext.add_argument('--min-score', type=int, default=6,
+                       help='Only extract from books with score >= this value (default 6)')
+    p_ext.add_argument('--validate', choices=['gemini', 'gemini-flash', 'gemini-3', 'gemini-3.1', 'groq', 'groq-qwen', 'groq-llama4', 'groq-kimi', 'mistral', 'openrouter'],
+                       help='Validate datapoints with LLM before inserting (costs 1 API call per ~50 datapoints)')
     p_ext.add_argument('--dry-run', action='store_true', help='Preview without inserting')
     p_ext.set_defaults(func=cmd_extract)
 
@@ -688,7 +703,7 @@ Strategies:
     add_common_args(p_gut)
     p_gut.add_argument('--gutenberg-url', help='Specific Gutenberg ebook URL')
     p_gut.add_argument('--max-books', type=int, default=5, help='Max books to search (default 5)')
-    p_gut.add_argument('--llm', choices=['gemini', 'gemini-flash', 'gemini-3', 'gemini-3.1', 'groq', 'mistral', 'openrouter'],
+    p_gut.add_argument('--llm', choices=['gemini', 'gemini-flash', 'gemini-3', 'gemini-3.1', 'groq', 'groq-qwen', 'groq-llama4', 'groq-kimi', 'mistral', 'openrouter'],
                        help='Use LLM for extraction instead of pattern matching (set GOOGLE_API_KEY etc.)')
     p_gut.set_defaults(func=cmd_gutenberg)
 
@@ -696,7 +711,7 @@ Strategies:
     p_ia = subparsers.add_parser('archive', help='Internet Archive full-text extraction')
     add_common_args(p_ia)
     p_ia.add_argument('--max-texts', type=int, default=5, help='Max texts to process (default 5)')
-    p_ia.add_argument('--llm', choices=['gemini', 'gemini-flash', 'gemini-3', 'gemini-3.1', 'groq', 'mistral', 'openrouter'],
+    p_ia.add_argument('--llm', choices=['gemini', 'gemini-flash', 'gemini-3', 'gemini-3.1', 'groq', 'groq-qwen', 'groq-llama4', 'groq-kimi', 'mistral', 'openrouter'],
                       help='Use LLM for extraction instead of pattern matching (set GOOGLE_API_KEY etc.)')
     p_ia.set_defaults(func=cmd_archive)
 

@@ -13,6 +13,9 @@
         Discussion.init('wa-discussions', 'whereabout', parseInt(wId));
     });
 
+    let prevWhereabout = null;
+    let nextWhereabout = null;
+
     async function loadAndRender() {
         const w = await API.getWhereabout(parseInt(wId));
         if (w.error) {
@@ -21,6 +24,20 @@
         }
         currentData = w;
         document.title = `${w.place_name} – ${w.person_name || 'Unknown'} – WhoWasWhereWhen`;
+
+        // Fetch siblings for prev/next navigation
+        prevWhereabout = null;
+        nextWhereabout = null;
+        if (w.person_id) {
+            const person = await API.getPerson(w.person_id);
+            if (person && person.whereabouts) {
+                const ww = person.whereabouts;
+                const idx = ww.findIndex(x => x.id === w.id);
+                if (idx > 0) prevWhereabout = ww[idx - 1];
+                if (idx >= 0 && idx < ww.length - 1) nextWhereabout = ww[idx + 1];
+            }
+        }
+
         renderView(w);
         renderMap(w);
     }
@@ -82,7 +99,23 @@
             verifiedHtml = `<span class="wa-badge wa-badge-unverified">Unverified</span>`;
         }
 
+        // Navigation arrows
+        let navHtml = '<div class="wa-nav">';
+        if (prevWhereabout) {
+            navHtml += `<a href="/static/whereabout.html?id=${prevWhereabout.id}" class="wa-nav-prev" title="${attr(prevWhereabout.place_name)} (${attr(prevWhereabout.date_display || prevWhereabout.date_start)})">&larr; ${esc(prevWhereabout.place_name)}</a>`;
+        } else {
+            navHtml += '<span class="wa-nav-prev wa-nav-disabled"></span>';
+        }
+        navHtml += `<a href="/static/person.html?id=${w.person_id}" class="wa-nav-person">${esc(w.person_name || 'Unknown')}</a>`;
+        if (nextWhereabout) {
+            navHtml += `<a href="/static/whereabout.html?id=${nextWhereabout.id}" class="wa-nav-next" title="${attr(nextWhereabout.place_name)} (${attr(nextWhereabout.date_display || nextWhereabout.date_start)})">${esc(nextWhereabout.place_name)} &rarr;</a>`;
+        } else {
+            navHtml += '<span class="wa-nav-next wa-nav-disabled"></span>';
+        }
+        navHtml += '</div>';
+
         el.innerHTML = `
+            ${navHtml}
             <div class="wa-breadcrumb">
                 <a href="/static/person.html?id=${w.person_id}">${esc(w.person_name || 'Unknown')}</a> &rsaquo;
                 <span>${esc(w.place_name)}</span>

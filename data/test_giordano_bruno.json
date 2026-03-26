@@ -1,0 +1,314 @@
+{
+  "person": {
+    "name": "Giordano Bruno",
+    "description": "Giordano Bruno (/d\u0292\u0254\u02d0r\u02c8d\u0251\u02d0no\u028a \u02c8bru\u02d0no\u028a/ jor-DAH-noh BROO-noh, Italian: [d\u0292or\u02c8da\u02d0no \u02c8bru\u02d0no]; Latin: Iordanus Brunus Nolanus; born Filippo Bruno; February 1548 \u2013 17 February 1600) was an Italian philosopher, poet, alchemist, astronomer, cosmological theorist, and esotericist. He is known for his cosmological theories, which conceptually extended to include the then-novel Copernican model. He practised Hermeticism and took a mystical approach to exploring the universe. He proposed that the stars were distant suns surrounded by their own planets (exoplanets), and he raised the possibility that these planets might foster life of their own, a cosmological position known as cosmic pluralism. He also insisted that the universe is infinite and could have no centre.",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Giordano_Bruno",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Portrait_of_Giordano_Bruno_in_%22Opere%22_Wellcome_L0015152_%28cropped%29.jpg/250px-Portrait_of_Giordano_Bruno_in_%22Opere%22_Wellcome_L0015152_%28cropped%29.jpg"
+  },
+  "datapoints": [
+    {
+      "place_name": "Nola, Italy",
+      "latitude": 40.9210826,
+      "longitude": 14.5327402,
+      "date_start": "1548-02-01",
+      "date_end": "1560-12-31",
+      "date_precision": "year",
+      "date_display": "1548\u20131560s",
+      "description": "Birthplace and location of his childhood.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 3.1 Flash Lite extraction from Wikipedia: Giordano Bruno",
+          "url": "https://en.wikipedia.org/wiki/Giordano_Bruno",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Naples, Italy",
+      "latitude": 40.8358846,
+      "longitude": 14.2487679,
+      "date_start": "1560-01-01",
+      "date_end": "1576-01-01",
+      "date_precision": "year",
+      "date_display": "1560s\u20131576",
+      "description": "Educated at the Augustinian monastery and Studium Generale, then entered the Dominican Order at San Domenico Maggiore.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 3.1 Flash Lite extraction from Wikipedia: Giordano Bruno",
+          "url": "https://en.wikipedia.org/wiki/Giordano_Bruno",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Rome, Italy",
+      "latitude": 41.8933203,
+      "longitude": 12.4829321,
+      "date_start": "1565-01-01",
+      "date_end": "1575-12-31",
+      "date_precision": "year",
+      "date_display": "c. 1565\u20131575",
+      "description": "Traveled to Rome to demonstrate his mnemonic system to Pope Pius V and Cardinal Rebiba.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 3.1 Flash Lite extraction from Wikipedia: Giordano Bruno",
+          "url": "https://en.wikipedia.org/wiki/Giordano_Bruno",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Noli, Italy",
+      "latitude": 44.2058832,
+      "longitude": 8.416419,
+      "date_start": "1576-01-01",
+      "date_end": "1576-12-31",
+      "date_precision": "year",
+      "date_display": "1576",
+      "description": "Fled Naples and stopped at the port of Noli.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 3.1 Flash Lite extraction from Wikipedia: Giordano Bruno",
+          "url": "https://en.wikipedia.org/wiki/Giordano_Bruno",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Savona, Italy",
+      "latitude": 44.2334238,
+      "longitude": 8.2525727,
+      "date_start": "1576-01-01",
+      "date_end": "1576-12-31",
+      "date_precision": "year",
+      "date_display": "1576",
+      "description": "Visited Savona while fleeing his monastic order.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 3.1 Flash Lite extraction from Wikipedia: Giordano Bruno",
+          "url": "https://en.wikipedia.org/wiki/Giordano_Bruno",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Turin, Italy",
+      "latitude": 45.0677551,
+      "longitude": 7.6824892,
+      "date_start": "1576-01-01",
+      "date_end": "1576-12-31",
+      "date_precision": "year",
+      "date_display": "1576",
+      "description": "Visited Turin while fleeing his monastic order.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 3.1 Flash Lite extraction from Wikipedia: Giordano Bruno",
+          "url": "https://en.wikipedia.org/wiki/Giordano_Bruno",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Venice, Italy",
+      "latitude": 45.4371908,
+      "longitude": 12.3345898,
+      "date_start": "1576-01-01",
+      "date_end": "1577-12-31",
+      "date_precision": "year",
+      "date_display": "1576\u20131577",
+      "description": "Stayed in Venice to publish his work before traveling to Padua.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 3.1 Flash Lite extraction from Wikipedia: Giordano Bruno",
+          "url": "https://en.wikipedia.org/wiki/Giordano_Bruno",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Padua, Italy",
+      "latitude": 45.4077172,
+      "longitude": 11.8734455,
+      "date_start": "1577-01-01",
+      "date_end": "1577-12-31",
+      "date_precision": "year",
+      "date_display": "1577",
+      "description": "Met Dominicans and resumed wearing his religious habit.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 3.1 Flash Lite extraction from Wikipedia: Giordano Bruno",
+          "url": "https://en.wikipedia.org/wiki/Giordano_Bruno",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Bergamo, Italy",
+      "latitude": 45.7566557,
+      "longitude": 9.7542192,
+      "date_start": "1577-01-01",
+      "date_end": "1577-12-31",
+      "date_precision": "year",
+      "date_display": "1577",
+      "description": "Passed through Bergamo en route to the Alps.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 3.1 Flash Lite extraction from Wikipedia: Giordano Bruno",
+          "url": "https://en.wikipedia.org/wiki/Giordano_Bruno",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Chamb\u00e9ry, France",
+      "latitude": 45.5662672,
+      "longitude": 5.9203636,
+      "date_start": "1577-01-01",
+      "date_end": "1577-12-31",
+      "date_precision": "year",
+      "date_display": "1577",
+      "description": "Passed through Chamb\u00e9ry crossing the Alps.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 3.1 Flash Lite extraction from Wikipedia: Giordano Bruno",
+          "url": "https://en.wikipedia.org/wiki/Giordano_Bruno",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Lyon, France",
+      "latitude": 45.7578137,
+      "longitude": 4.8320114,
+      "date_start": "1577-01-01",
+      "date_end": "1579-01-01",
+      "date_precision": "year",
+      "date_display": "1577\u20131579",
+      "description": "Stayed in Lyon after crossing the Alps, before moving to Geneva.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 3.1 Flash Lite extraction from Wikipedia: Giordano Bruno",
+          "url": "https://en.wikipedia.org/wiki/Giordano_Bruno",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Geneva, Switzerland",
+      "latitude": 46.2017559,
+      "longitude": 6.1466014,
+      "date_start": "1579-05-01",
+      "date_end": "1579-08-31",
+      "date_precision": "month",
+      "date_display": "May\u2013August 1579",
+      "description": "Enrolled in the University of Geneva but was eventually arrested for heresy.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 3.1 Flash Lite extraction from Wikipedia: Giordano Bruno",
+          "url": "https://en.wikipedia.org/wiki/Giordano_Bruno",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Toulouse, France",
+      "latitude": 43.6044638,
+      "longitude": 1.4442433,
+      "date_start": "1580-01-01",
+      "date_end": "1581-06-30",
+      "date_precision": "year",
+      "date_display": "1580\u20131581",
+      "description": "Earned a doctorate in theology and lectured in philosophy.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 3.1 Flash Lite extraction from Wikipedia: Giordano Bruno",
+          "url": "https://en.wikipedia.org/wiki/Giordano_Bruno",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Paris, France",
+      "latitude": 48.8588897,
+      "longitude": 2.320041,
+      "date_start": "1581-07-01",
+      "date_end": "1583-03-31",
+      "date_precision": "year",
+      "date_display": "1581\u20131583",
+      "description": "Held theological lectures and published works under the protection of King Henry III.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 3.1 Flash Lite extraction from Wikipedia: Giordano Bruno",
+          "url": "https://en.wikipedia.org/wiki/Giordano_Bruno",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "London, England",
+      "latitude": 51.5074456,
+      "longitude": -0.1277653,
+      "date_start": "1583-04-01",
+      "date_end": "1585-12-31",
+      "date_precision": "year",
+      "date_display": "1583\u20131585",
+      "description": "Lived at the French Embassy, lectured at Oxford, and published several important philosophical dialogues.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 3.1 Flash Lite extraction from Wikipedia: Giordano Bruno",
+          "url": "https://en.wikipedia.org/wiki/Giordano_Bruno",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Rome, Italy",
+      "latitude": 41.8933203,
+      "longitude": 12.4829321,
+      "date_start": "1593-01-01",
+      "date_end": "1600-02-17",
+      "date_precision": "year",
+      "date_display": "1593\u20131600",
+      "description": "Imprisoned by the Roman Inquisition, tried for heresy, and executed at Campo de' Fiori.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 3.1 Flash Lite extraction from Wikipedia: Giordano Bruno",
+          "url": "https://en.wikipedia.org/wiki/Giordano_Bruno",
+          "source_type": "ai_extracted"
+        }
+      ]
+    }
+  ]
+}

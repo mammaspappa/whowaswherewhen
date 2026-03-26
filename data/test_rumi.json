@@ -1,0 +1,276 @@
+{
+  "person": {
+    "name": "Rumi",
+    "description": "Jal\u0101l al-D\u012bn Mu\u1e25ammad R\u016bm\u012b,[b] commonly known as Rumi (30 September 1207\u00a0\u2013 17 December 1273), was a Sufi mystic, poet, and founder of the Islamic brotherhood known as the Mevlevi Order. His family hailed from Balkh. Rumi is an influential figure in Sufism, and his thought and works loom large both in Persian literature and mystic poetry in general. Today, his translated works are enjoyed all over the world.",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Rumi",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D8%A7%D8%AB%D8%B1_%D8%AD%D8%B3%DB%8C%D9%86_%D8%A8%D9%87%D8%B2%D8%A7%D8%AF_%28cropped%29.jpg/250px-%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D8%A7%D8%AB%D8%B1_%D8%AD%D8%B3%DB%8C%D9%86_%D8%A8%D9%87%D8%B2%D8%A7%D8%AF_%28cropped%29.jpg"
+  },
+  "datapoints": [
+    {
+      "place_name": "Samarkand, Uzbekistan",
+      "latitude": 39.6550017,
+      "longitude": 66.9756954,
+      "date_start": "1212",
+      "date_end": "1220",
+      "date_precision": "year",
+      "date_display": "1212 \u2013 circa 1220",
+      "description": "Rumi's family moved to Samarkand, Uzbekistan, after leaving Wakhsh due to the advancing Mongol hordes. He spent his formative years in this city.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 2.5 Flash Lite extraction from Wikipedia: Rumi",
+          "url": "https://en.wikipedia.org/wiki/Rumi",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Nishapur, Iran",
+      "latitude": 36.2105604,
+      "longitude": 58.7922291,
+      "date_start": null,
+      "date_end": null,
+      "date_precision": "approximate",
+      "date_display": "Between 1215 and 1220",
+      "description": "Rumi and his family may have encountered the poet Attar in Nishapur, Iran, during their westward flight from the Mongols. Attar is said to have given Rumi a book.",
+      "confidence": "possible",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 2.5 Flash Lite extraction from Wikipedia: Rumi",
+          "url": "https://en.wikipedia.org/wiki/Rumi",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Baghdad, Iraq",
+      "latitude": 33.3061701,
+      "longitude": 44.3872213,
+      "date_start": null,
+      "date_end": null,
+      "date_precision": "approximate",
+      "date_display": "Between 1215 and 1220",
+      "description": "After leaving Nishapur, Rumi's family passed through Baghdad, Iraq, and met with scholars and Sufis.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 2.5 Flash Lite extraction from Wikipedia: Rumi",
+          "url": "https://en.wikipedia.org/wiki/Rumi",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Hejaz, Saudi Arabia",
+      "latitude": 21.4140437,
+      "longitude": 39.8224352,
+      "date_start": null,
+      "date_end": null,
+      "date_precision": "approximate",
+      "date_display": "Between 1215 and 1220",
+      "description": "The caravan Rumi was part of journeyed to Hejaz, Saudi Arabia, where they performed the pilgrimage at Mecca.",
+      "confidence": "certain",
+      "location_size": "region",
+      "sources": [
+        {
+          "title": "Gemini 2.5 Flash Lite extraction from Wikipedia: Rumi",
+          "url": "https://en.wikipedia.org/wiki/Rumi",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Mecca, Saudi Arabia",
+      "latitude": 21.420847,
+      "longitude": 39.826869,
+      "date_start": null,
+      "date_end": null,
+      "date_precision": "approximate",
+      "date_display": "Between 1215 and 1220",
+      "description": "Rumi performed the Islamic pilgrimage at Mecca, Saudi Arabia, as part of his family's westward journey.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 2.5 Flash Lite extraction from Wikipedia: Rumi",
+          "url": "https://en.wikipedia.org/wiki/Rumi",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Damascus, Syria",
+      "latitude": 33.5130695,
+      "longitude": 36.3095814,
+      "date_start": null,
+      "date_end": null,
+      "date_precision": "approximate",
+      "date_display": "Between 1215 and 1220",
+      "description": "After Hejaz, Rumi's caravan passed through Damascus, Syria. He is also said to have spent four years here at a later date.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 2.5 Flash Lite extraction from Wikipedia: Rumi",
+          "url": "https://en.wikipedia.org/wiki/Rumi",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Malatya, Turkey",
+      "latitude": 38.4820156,
+      "longitude": 38.1035355,
+      "date_start": null,
+      "date_end": null,
+      "date_precision": "approximate",
+      "date_display": "Between 1215 and 1220",
+      "description": "Rumi's migrating caravan passed through Malatya, Turkey, on their journey westward.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 2.5 Flash Lite extraction from Wikipedia: Rumi",
+          "url": "https://en.wikipedia.org/wiki/Rumi",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Erzincan, Turkey",
+      "latitude": 39.6073429,
+      "longitude": 39.2013209,
+      "date_start": null,
+      "date_end": null,
+      "date_precision": "approximate",
+      "date_display": "Between 1215 and 1220",
+      "description": "Rumi's migrating caravan passed through Erzincan, Turkey, on their journey westward.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 2.5 Flash Lite extraction from Wikipedia: Rumi",
+          "url": "https://en.wikipedia.org/wiki/Rumi",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Sivas, Turkey",
+      "latitude": 39.4191717,
+      "longitude": 37.1012388,
+      "date_start": null,
+      "date_end": null,
+      "date_precision": "approximate",
+      "date_display": "Between 1215 and 1220",
+      "description": "Rumi's migrating caravan passed through Sivas, Turkey, on their journey westward.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 2.5 Flash Lite extraction from Wikipedia: Rumi",
+          "url": "https://en.wikipedia.org/wiki/Rumi",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Kayseri, Turkey",
+      "latitude": 38.7219011,
+      "longitude": 35.4873214,
+      "date_start": null,
+      "date_end": null,
+      "date_precision": "approximate",
+      "date_display": "Between 1215 and 1220",
+      "description": "Rumi's migrating caravan passed through Kayseri, Turkey, on their journey westward.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 2.5 Flash Lite extraction from Wikipedia: Rumi",
+          "url": "https://en.wikipedia.org/wiki/Rumi",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Nigde, Turkey",
+      "latitude": 38.0664691,
+      "longitude": 34.7051438,
+      "date_start": null,
+      "date_end": null,
+      "date_precision": "approximate",
+      "date_display": "Between 1215 and 1220",
+      "description": "Rumi's migrating caravan passed through Nigde, Turkey, on their journey westward.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 2.5 Flash Lite extraction from Wikipedia: Rumi",
+          "url": "https://en.wikipedia.org/wiki/Rumi",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Karaman, Turkey",
+      "latitude": 37.1796848,
+      "longitude": 33.3383665,
+      "date_start": "1220",
+      "date_end": "1227",
+      "date_precision": "year",
+      "date_display": "Circa 1220 \u2013 1227",
+      "description": "Rumi's family settled in Karaman, Turkey, for seven years. During this time, Rumi's mother and brother died, and he married and had children.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 2.5 Flash Lite extraction from Wikipedia: Rumi",
+          "url": "https://en.wikipedia.org/wiki/Rumi",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Konya, Turkey",
+      "latitude": 37.872734,
+      "longitude": 32.4924376,
+      "date_start": "1228-05-01",
+      "date_end": "1273-12-17",
+      "date_precision": "day",
+      "date_display": "May 1, 1228 \u2013 December 17, 1273",
+      "description": "Rumi settled in Konya, Turkey, with his father in 1228. He lived, worked as a scholar and teacher, and eventually died and was buried in Konya.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 2.5 Flash Lite extraction from Wikipedia: Rumi",
+          "url": "https://en.wikipedia.org/wiki/Rumi",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Damascus, Syria",
+      "latitude": 33.5130695,
+      "longitude": 36.3095814,
+      "date_start": null,
+      "date_end": null,
+      "date_precision": "year",
+      "date_display": "During his time in Konya, before 1244",
+      "description": "Rumi is said to have travelled to Damascus, Syria, and spent four years there during his time as a teacher and jurist.",
+      "confidence": "possible",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 2.5 Flash Lite extraction from Wikipedia: Rumi",
+          "url": "https://en.wikipedia.org/wiki/Rumi",
+          "source_type": "ai_extracted"
+        }
+      ]
+    }
+  ]
+}

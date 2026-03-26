@@ -25,6 +25,13 @@ For each location, provide:
 - date_display: human-readable date string
 - description: brief description of what they were doing there (1-2 sentences)
 - confidence: one of "certain", "probable", "possible", "speculative"
+- location_size: classify the geographic scale of the place name. One of:
+  - "building" — a specific structure, address, estate, or landmark (e.g. "the White House", "Tower of London")
+  - "district" — a neighborhood, district, campus, or small named area within a city
+  - "city" — a city, town, or village (e.g. "Paris, France")
+  - "region" — a state, province, county, or sub-national region (e.g. "Tuscany", "Bavaria")
+  - "country" — a country or nation (e.g. "Spain", "France")
+  - "supranational" — a multi-country area, subcontinent, or continent (e.g. "Scandinavia")
 
 Return ONLY a JSON array sorted chronologically. Use negative years for BCE dates (e.g., -0043 for 44 BC). Be conservative with confidence levels. If dates are uncertain, use wider ranges and lower precision.
 

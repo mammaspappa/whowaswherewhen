@@ -1,0 +1,238 @@
+{
+  "person": {
+    "name": "Rumi",
+    "description": "Jal\u0101l al-D\u012bn Mu\u1e25ammad R\u016bm\u012b,[b] commonly known as Rumi (30 September 1207\u00a0\u2013 17 December 1273), was a Sufi mystic, poet, and founder of the Islamic brotherhood known as the Mevlevi Order. His family hailed from Balkh. Rumi is an influential figure in Sufism, and his thought and works loom large both in Persian literature and mystic poetry in general. Today, his translated works are enjoyed all over the world.",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Rumi",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D8%A7%D8%AB%D8%B1_%D8%AD%D8%B3%DB%8C%D9%86_%D8%A8%D9%87%D8%B2%D8%A7%D8%AF_%28cropped%29.jpg/250px-%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D8%A7%D8%AB%D8%B1_%D8%AD%D8%B3%DB%8C%D9%86_%D8%A8%D9%87%D8%B2%D8%A7%D8%AF_%28cropped%29.jpg"
+  },
+  "datapoints": [
+    {
+      "place_name": "Samarkand, Uzbekistan",
+      "latitude": 39.6550017,
+      "longitude": 66.9756954,
+      "date_start": "1212-01-01",
+      "date_end": "1215-01-01",
+      "date_precision": "year",
+      "date_display": "1212 - 1215",
+      "description": "Rumi's family moved here after leaving Wakhsh.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 4 Scout 17B) extraction from Wikipedia: Rumi",
+          "url": "https://en.wikipedia.org/wiki/Rumi",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Nishapur, Iran",
+      "latitude": 36.2105604,
+      "longitude": 58.7922291,
+      "date_start": "1215-01-01",
+      "date_end": "1215-01-01",
+      "date_precision": "year",
+      "date_display": "1215",
+      "description": "Rumi met the poet Attar here.",
+      "confidence": "probable",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 4 Scout 17B) extraction from Wikipedia: Rumi",
+          "url": "https://en.wikipedia.org/wiki/Rumi",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Baghdad, Iraq",
+      "latitude": 33.3061701,
+      "longitude": 44.3872213,
+      "date_start": "1215-01-01",
+      "date_end": "1215-01-01",
+      "date_precision": "year",
+      "date_display": "1215",
+      "description": "Rumi's family visited here on their way west.",
+      "confidence": "probable",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 4 Scout 17B) extraction from Wikipedia: Rumi",
+          "url": "https://en.wikipedia.org/wiki/Rumi",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Hejaz, Saudi Arabia",
+      "latitude": 21.4140437,
+      "longitude": 39.8224352,
+      "date_start": "1215-01-01",
+      "date_end": "1215-01-01",
+      "date_precision": "year",
+      "date_display": "1215",
+      "description": "Rumi's family performed the pilgrimage at Mecca here.",
+      "confidence": "probable",
+      "location_size": "region",
+      "sources": [
+        {
+          "title": "Groq (Llama 4 Scout 17B) extraction from Wikipedia: Rumi",
+          "url": "https://en.wikipedia.org/wiki/Rumi",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Damascus, Syria",
+      "latitude": 33.5130695,
+      "longitude": 36.3095814,
+      "date_start": "1215-01-01",
+      "date_end": "1244-11-15",
+      "date_precision": "year",
+      "date_display": "1215 - 1244",
+      "description": "Rumi visited and lived here for a time.",
+      "confidence": "probable",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 4 Scout 17B) extraction from Wikipedia: Rumi",
+          "url": "https://en.wikipedia.org/wiki/Rumi",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Malatya, Turkey",
+      "latitude": 38.4820156,
+      "longitude": 38.1035355,
+      "date_start": "1215-01-01",
+      "date_end": "1215-01-01",
+      "date_precision": "year",
+      "date_display": "1215",
+      "description": "Rumi's family passed through here on their way west.",
+      "confidence": "probable",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 4 Scout 17B) extraction from Wikipedia: Rumi",
+          "url": "https://en.wikipedia.org/wiki/Rumi",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Erzincan, Turkey",
+      "latitude": 39.6073429,
+      "longitude": 39.2013209,
+      "date_start": "1215-01-01",
+      "date_end": "1215-01-01",
+      "date_precision": "year",
+      "date_display": "1215",
+      "description": "Rumi's family passed through here on their way west.",
+      "confidence": "probable",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 4 Scout 17B) extraction from Wikipedia: Rumi",
+          "url": "https://en.wikipedia.org/wiki/Rumi",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Sivas, Turkey",
+      "latitude": 39.4191717,
+      "longitude": 37.1012388,
+      "date_start": "1215-01-01",
+      "date_end": "1215-01-01",
+      "date_precision": "year",
+      "date_display": "1215",
+      "description": "Rumi's family passed through here on their way west.",
+      "confidence": "probable",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 4 Scout 17B) extraction from Wikipedia: Rumi",
+          "url": "https://en.wikipedia.org/wiki/Rumi",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Kayseri, Turkey",
+      "latitude": 38.7219011,
+      "longitude": 35.4873214,
+      "date_start": "1215-01-01",
+      "date_end": "1215-01-01",
+      "date_precision": "year",
+      "date_display": "1215",
+      "description": "Rumi's family passed through here on their way west.",
+      "confidence": "probable",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 4 Scout 17B) extraction from Wikipedia: Rumi",
+          "url": "https://en.wikipedia.org/wiki/Rumi",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Nigde, Turkey",
+      "latitude": 38.0664691,
+      "longitude": 34.7051438,
+      "date_start": "1215-01-01",
+      "date_end": "1215-01-01",
+      "date_precision": "year",
+      "date_display": "1215",
+      "description": "Rumi's family passed through here on their way west.",
+      "confidence": "probable",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 4 Scout 17B) extraction from Wikipedia: Rumi",
+          "url": "https://en.wikipedia.org/wiki/Rumi",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Karaman, Turkey",
+      "latitude": 37.1796848,
+      "longitude": 33.3383665,
+      "date_start": "1215-01-01",
+      "date_end": "1228-05-01",
+      "date_precision": "year",
+      "date_display": "1215 - 1228",
+      "description": "Rumi lived here with his family for seven years.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 4 Scout 17B) extraction from Wikipedia: Rumi",
+          "url": "https://en.wikipedia.org/wiki/Rumi",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Konya, Turkey",
+      "latitude": 37.872734,
+      "longitude": 32.4924376,
+      "date_start": "1228-05-01",
+      "date_end": "1273-12-17",
+      "date_precision": "day",
+      "date_display": "1 May 1228 - 17 December 1273",
+      "description": "Rumi settled here with his family and lived the rest of his life.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 4 Scout 17B) extraction from Wikipedia: Rumi",
+          "url": "https://en.wikipedia.org/wiki/Rumi",
+          "source_type": "ai_extracted"
+        }
+      ]
+    }
+  ]
+}

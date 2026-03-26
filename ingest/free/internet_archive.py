@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
 
 from ingest.free.date_resolver import resolve_date
 from ingest.free.google_books import (
-    BIO_PATTERNS, DATE_WINDOW, IGNORE_PLACES,
+    BIO_PATTERNS, DATE_WINDOW, IGNORE_PLACES, POSTHUMOUS_INDICATORS,
     _is_valid_place, _clean_place, _find_nearby_date,
 )
 from ingest.wikipedia import fetch_page
@@ -174,6 +174,13 @@ def extract_locations_from_fulltext(text, person_name, max_chars=50000):
             if not _is_valid_place(place):
                 continue
 
+            # Skip posthumous/legacy context
+            ctx_start = max(0, m.start() - 100)
+            ctx_end = min(len(text), m.end() + 100)
+            context = text[ctx_start:ctx_end]
+            if POSTHUMOUS_INDICATORS.search(context):
+                continue
+
             date_str = _find_nearby_date(text, m.start(), m.end(), window=200)
             if not date_str:
                 continue
@@ -186,9 +193,6 @@ def extract_locations_from_fulltext(text, person_name, max_chars=50000):
             if dedup_key in seen:
                 continue
             seen.add(dedup_key)
-
-            ctx_start = max(0, m.start() - 100)
-            ctx_end = min(len(text), m.end() + 100)
 
             datapoints.append({
                 'place_name': place,
@@ -211,6 +215,13 @@ def extract_locations_from_fulltext(text, person_name, max_chars=50000):
         if not _is_valid_place(place):
             continue
 
+        # Skip posthumous/legacy context
+        ctx_start = max(0, m.start() - 80)
+        ctx_end = min(len(text), m.end() + 80)
+        context = text[ctx_start:ctx_end]
+        if POSTHUMOUS_INDICATORS.search(context):
+            continue
+
         date_str = _find_nearby_date(text, m.start(), m.end(), window=100)
         if not date_str:
             continue
@@ -223,9 +234,6 @@ def extract_locations_from_fulltext(text, person_name, max_chars=50000):
         if dedup_key in seen:
             continue
         seen.add(dedup_key)
-
-        ctx_start = max(0, m.start() - 80)
-        ctx_end = min(len(text), m.end() + 80)
 
         datapoints.append({
             'place_name': place,

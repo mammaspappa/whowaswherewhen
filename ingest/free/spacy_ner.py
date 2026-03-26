@@ -40,6 +40,19 @@ IGNORE_PLACES = {
     'august', 'september', 'october', 'november', 'december',
     'christian', 'catholic', 'protestant', 'jewish', 'muslim', 'buddhist',
     'european', 'asian', 'african', 'north', 'south', 'east', 'west',
+    # Continents and vague regions (too imprecise for location data)
+    'europe', 'asia', 'africa', 'north america', 'south america',
+    'oceania', 'antarctica', 'middle east', 'far east', 'mediterranean',
+    'scandinavia', 'earth', 'world',
+    # Common false positives from NER
+    'war', 'congress', 'parliament', 'senate', 'house', 'whigs',
+    'tories', 'democrats', 'republicans', 'nefertiti',
+    # Calendar/abbreviation artifacts
+    'o.s.', 'n.s.', 'ma', 'bc', 'ad', 'ce', 'bce',
+    # Broad country abbreviations (too vague for location data)
+    'u.s.', 'us', 'uk', 'ussr', 'u.k.', 'u.s.s.r.',
+    # Common non-place nouns extracted by NER
+    'sun', 'io', 'fust', 'erik', 'laki',
 }
 
 
@@ -87,7 +100,7 @@ def extract_entities(text, nlp):
     return entities
 
 
-def _is_valid_place(text):
+def _is_valid_place(text, person_name=None):
     """Check if extracted text looks like a real place name."""
     if not text or len(text) < 2:
         return False
@@ -99,10 +112,25 @@ def _is_valid_place(text):
     # Skip if it's just a number
     if text.isdigit():
         return False
+    # Skip if it's part of the person's name AND not a known place.
+    # Many cities share names with people (Washington, Darwin, Newton, Bismarck).
+    # We only skip if the word is purely a surname, not a well-known place name.
+    PLACES_THAT_ARE_ALSO_NAMES = {
+        'washington', 'darwin', 'newton', 'bismarck', 'lincoln', 'victoria',
+        'columbus', 'florence', 'napoleon', 'wellington', 'alexander',
+        'elizabeth', 'louis', 'charles', 'henry', 'james', 'jackson',
+        'jefferson', 'madison', 'hamilton', 'franklin', 'houston',
+        'richmond', 'stuart', 'hannibal', 'cicero', 'nero',
+    }
+    if person_name:
+        name_parts = {w.lower() for w in person_name.split() if len(w) > 2}
+        text_lower = text.lower()
+        if text_lower in name_parts and text_lower not in PLACES_THAT_ARE_ALSO_NAMES:
+            return False
     return True
 
 
-def extract_location_date_pairs(text, nlp):
+def extract_location_date_pairs(text, nlp, person_name=None):
     """Extract (location, date, confidence, description) tuples from text.
 
     Uses three approaches:
@@ -126,7 +154,7 @@ def extract_location_date_pairs(text, nlp):
                 continue
 
             place = match.group(1).strip()
-            if not _is_valid_place(place):
+            if not _is_valid_place(place, person_name):
                 continue
 
             # Try to find a date in the same sentence
@@ -161,9 +189,26 @@ def extract_location_date_pairs(text, nlp):
         elif ent['label'] == 'DATE':
             sent_groups[idx]['dates'].append(ent['text'])
 
+    # Words that indicate the sentence is about legacy/posthumous events,
+    # not about the person physically being somewhere.
+    POSTHUMOUS_INDICATORS = re.compile(
+        r'\b(?:named after|statue|memorial|monument|museum|film|movie|play|'
+        r'musical|opera|TV|television|series|documentary|biography|biopic|'
+        r'novel|book about|award|prize|honor|honour|commemorate|celebrate|'
+        r'tribute|legacy|reputation|influence|inspired|adapted|portrayed|'
+        r'depicted|remembered|posthumous|renamed|dedicated to)\b',
+        re.IGNORECASE
+    )
+
     for idx, group in sent_groups.items():
+        sent_text = group['sent_text']
+
+        # Skip sentences about posthumous legacy
+        if POSTHUMOUS_INDICATORS.search(sent_text):
+            continue
+
         for loc in group['locations']:
-            if not _is_valid_place(loc):
+            if not _is_valid_place(loc, person_name):
                 continue
             for date_text in group['dates']:
                 date_start, date_end, precision, display = resolve_date(date_text)
@@ -176,7 +221,7 @@ def extract_location_date_pairs(text, nlp):
                 seen.add(key)
 
                 # Use sentence as description (trimmed)
-                desc = group['sent_text']
+                desc = sent_text
                 if len(desc) > 200:
                     desc = desc[:197] + '...'
 
@@ -224,7 +269,7 @@ def ingest_person(person_name=None, wikipedia_url=None, text_file=None,
     # Step 2: Load spaCy and extract
     print("\n2. Running spaCy NER...")
     nlp = _load_spacy()
-    pairs = extract_location_date_pairs(body_text, nlp)
+    pairs = extract_location_date_pairs(body_text, nlp, person_name=name)
     print(f"   Extracted {len(pairs)} location-date pairs")
 
     # Step 3: Geocode

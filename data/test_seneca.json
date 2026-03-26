@@ -1,0 +1,143 @@
+{
+  "person": {
+    "name": "Seneca the Younger",
+    "description": "Lucius Annaeus Seneca the Younger (/\u02c8s\u025bn\u026ak\u0259/ SEN-ik-\u0259; c.\u20094 BC \u2013 AD 65), usually known mononymously as Seneca, was a Stoic philosopher of Ancient Rome, a statesman, a dramatist, and in one work, a satirist, from the post-Augustan age of Latin literature.",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Seneca_the_Younger",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Duble_herma_of_Socrates_and_Seneca_Antikensammlung_Berlin_07.jpg/250px-Duble_herma_of_Socrates_and_Seneca_Antikensammlung_Berlin_07.jpg"
+  },
+  "datapoints": [
+    {
+      "place_name": "Cordoba, Spain",
+      "latitude": 37.8845813,
+      "longitude": -4.7760138,
+      "date_start": "-004-01-01",
+      "date_end": "0005-01-01",
+      "date_precision": "year",
+      "date_display": "c. 4 BC - 5 AD",
+      "description": "Born in Cordoba and spent early life there.",
+      "confidence": "probable",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 3.3 70B) extraction from Wikipedia: Seneca the Younger",
+          "url": "https://en.wikipedia.org/wiki/Seneca_the_Younger",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Rome, Italy",
+      "latitude": 41.8933203,
+      "longitude": 12.4829321,
+      "date_start": "0005-01-01",
+      "date_end": "0041-01-01",
+      "date_precision": "year",
+      "date_display": "c. 5 AD - 41 AD",
+      "description": "Trained in rhetoric and philosophy in Rome.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 3.3 70B) extraction from Wikipedia: Seneca the Younger",
+          "url": "https://en.wikipedia.org/wiki/Seneca_the_Younger",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Rome, Italy",
+      "latitude": 41.8933203,
+      "longitude": 12.4829321,
+      "date_start": "0017-01-01",
+      "date_end": "0020-01-01",
+      "date_precision": "year",
+      "date_display": "c. 17 AD - 20 AD",
+      "description": "Received philosophical training from Attalus and others.",
+      "confidence": "probable",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 3.3 70B) extraction from Wikipedia: Seneca the Younger",
+          "url": "https://en.wikipedia.org/wiki/Seneca_the_Younger",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Egypt",
+      "latitude": 26.2540493,
+      "longitude": 29.2675469,
+      "date_start": "0020-01-01",
+      "date_end": "0031-01-01",
+      "date_precision": "year",
+      "date_display": "c. 20 AD - 31 AD",
+      "description": "Sent to Egypt to live with his aunt due to illness.",
+      "confidence": "certain",
+      "location_size": "country",
+      "sources": [
+        {
+          "title": "Groq (Llama 3.3 70B) extraction from Wikipedia: Seneca the Younger",
+          "url": "https://en.wikipedia.org/wiki/Seneca_the_Younger",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Rome, Italy",
+      "latitude": 41.8933203,
+      "longitude": 12.4829321,
+      "date_start": "0031-01-01",
+      "date_end": "0041-01-01",
+      "date_precision": "year",
+      "date_display": "c. 31 AD - 41 AD",
+      "description": "Returned to Rome and became a senator.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 3.3 70B) extraction from Wikipedia: Seneca the Younger",
+          "url": "https://en.wikipedia.org/wiki/Seneca_the_Younger",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Corsica, France",
+      "latitude": 42.188098,
+      "longitude": 9.0683139,
+      "date_start": "0041-01-01",
+      "date_end": "0049-01-01",
+      "date_precision": "year",
+      "date_display": "41 AD - 49 AD",
+      "description": "Exiled to the island of Corsica.",
+      "confidence": "certain",
+      "location_size": "region",
+      "sources": [
+        {
+          "title": "Groq (Llama 3.3 70B) extraction from Wikipedia: Seneca the Younger",
+          "url": "https://en.wikipedia.org/wiki/Seneca_the_Younger",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Rome, Italy",
+      "latitude": 41.8933203,
+      "longitude": 12.4829321,
+      "date_start": "0049-01-01",
+      "date_end": "0065-01-01",
+      "date_precision": "year",
+      "date_display": "49 AD - 65 AD",
+      "description": "Returned to Rome, became tutor to Nero and later his advisor.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 3.3 70B) extraction from Wikipedia: Seneca the Younger",
+          "url": "https://en.wikipedia.org/wiki/Seneca_the_Younger",
+          "source_type": "ai_extracted"
+        }
+      ]
+    }
+  ]
+}

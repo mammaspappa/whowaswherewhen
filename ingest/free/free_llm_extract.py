@@ -56,16 +56,43 @@ PROVIDERS = {
         'env_key': 'GOOGLE_API_KEY',
         'env_key_alt': 'GOOGLE_GEMINI_API_KEY',
         'model': 'gemini-3.1-flash-lite-preview',
-        'rate_limit_sleep': 5.0,  # 15 RPM → 4s min, use 5s for safety
+        'rate_limit_sleep': 8.0,  # 15 RPM but TPM limited, use 8s for safety
         'max_tokens': 4096,
-        'rpd': 500,  # much higher daily limit
+        'rpd': 500,
     },
     'groq': {
-        'name': 'Groq',
+        'name': 'Groq (Llama 3.3 70B)',
         'env_key': 'GROQ_API_KEY',
         'base_url': 'https://api.groq.com/openai/v1/chat/completions',
         'model': 'llama-3.3-70b-versatile',
         'rate_limit_sleep': 2.0,  # 30 RPM
+        'max_tokens': 4096,
+        'rpd': 14400,
+    },
+    'groq-qwen': {
+        'name': 'Groq (Qwen3 32B)',
+        'env_key': 'GROQ_API_KEY',
+        'base_url': 'https://api.groq.com/openai/v1/chat/completions',
+        'model': 'qwen/qwen3-32b',
+        'rate_limit_sleep': 2.0,
+        'max_tokens': 4096,
+        'rpd': 14400,
+    },
+    'groq-llama4': {
+        'name': 'Groq (Llama 4 Scout 17B)',
+        'env_key': 'GROQ_API_KEY',
+        'base_url': 'https://api.groq.com/openai/v1/chat/completions',
+        'model': 'meta-llama/llama-4-scout-17b-16e-instruct',
+        'rate_limit_sleep': 2.0,
+        'max_tokens': 4096,
+        'rpd': 14400,
+    },
+    'groq-kimi': {
+        'name': 'Groq (Kimi K2)',
+        'env_key': 'GROQ_API_KEY',
+        'base_url': 'https://api.groq.com/openai/v1/chat/completions',
+        'model': 'moonshotai/kimi-k2-instruct',
+        'rate_limit_sleep': 2.0,
         'max_tokens': 4096,
         'rpd': 14400,
     },
@@ -102,8 +129,9 @@ LOCATION_SCHEMA = {
             "date_display": {"type": "string"},
             "description": {"type": "string"},
             "confidence": {"type": "string", "enum": ["certain", "probable", "possible", "speculative"]},
+            "location_size": {"type": "string", "enum": ["building", "district", "city", "region", "country", "supranational"]},
         },
-        "required": ["place_name", "date_start", "date_end", "date_precision", "date_display", "description", "confidence"],
+        "required": ["place_name", "date_start", "date_end", "date_precision", "date_display", "description", "confidence", "location_size"],
     },
 }
 
@@ -156,21 +184,42 @@ def _get_daily_remaining(provider):
 
 def _build_prompt(person_name, body_text, birth_info='', death_info=''):
     """Build the extraction prompt (same as ai_extract.py)."""
-    return f"""Given the following biographical text about {person_name} ({birth_info} - {death_info}), extract every location where this person is known or believed to have been.
+    return f"""Given the following biographical text about {person_name} ({birth_info} - {death_info}), extract every location where this person was PHYSICALLY PRESENT during their lifetime.
+
+CRITICAL RULES:
+- Only include places where {person_name} personally was — places they lived, visited, traveled through, worked, fought, or died.
+- Do NOT include places that are merely mentioned in connection with the person (e.g. places named after them, locations of statues/memorials, places where films/plays about them were made).
+- Do NOT include locations from after the person's death.
+- Do NOT include places where other people did things related to {person_name}.
+- All dates must fall within the person's lifetime ({birth_info} to {death_info}).
+- Be as SPECIFIC as possible with locations. Prefer the most precise level known:
+  - If a specific building/landmark is known, use it: "Tower of London, London, England" not just "London, England". "Fotheringhay Castle, Northamptonshire, England" not just "Fotheringhay, England".
+  - If only the city is known, use city + country: "Paris, France" not "Europe".
+  - Never use continents or vague regions: "Nanjing, China" not "Asia".
+- ALWAYS include the modern country name in place_name for geocoding accuracy. Use modern names: "Thessaloniki, Greece" not "Thessalonica". "Tarsus, Turkey" not "Cilicia". "Rhodes, Greece" not "Rhodes". For ancient regions with no modern city, use the nearest modern equivalent: "Iznik, Turkey" not "Nicaea". For rivers/mountains/etc., include the country: "Rhine River, Germany".
+- place_name must be ONLY the place name. Never append extra words like dates, prepositions, or descriptions. WRONG: "Rome on", "Italy for", "Sicily during". CORRECT: "Rome, Italy", "Sicily, Italy".
+- Be SPECIFIC with dates: prefer day or month precision over year or decade. "March 15, 1517" not "1510s". Only use broad date ranges when the text gives no better information.
 
 For each location, provide:
-- place_name: The name of the place (city, region, country as appropriate)
-- date_start: ISO-8601 date (YYYY-MM-DD) for the start of their time there
-- date_end: ISO-8601 date (YYYY-MM-DD) for the end of their time there
+- place_name: The most specific name known, with modern country. Prefer buildings/landmarks when known: "Wittenberg Castle Church, Wittenberg, Germany". Otherwise city: "Salzburg, Austria" not "Europe". Use modern names for geocoding. ONLY the place name — never append extra words.
+- date_start: ISO-8601 date string "YYYY-MM-DD" for the start of their time there. ALWAYS provide a date, even if approximate — use "YYYY-01-01" for year-only dates. Never return null.
+- date_end: ISO-8601 date string "YYYY-MM-DD" for the end of their time there. ALWAYS provide a date. Never return null.
 - date_precision: one of "day", "month", "season", "year", "decade", "approximate"
 - date_display: human-readable date string
 - description: brief description of what they were doing there (1-2 sentences)
 - confidence: one of "certain", "probable", "possible", "speculative"
+- location_size: classify the geographic scale of the place name. One of:
+  - "building" — a specific structure, address, estate, or landmark. Include the full name and nearest city for geocoding: "Fotheringhay Castle, Northamptonshire, England" not just "Fotheringhay". "Lochleven Castle, Kinross, Scotland" not just "Lochleven".
+  - "district" — a neighborhood, district, campus, or small named area within a city (e.g. "Montmartre, Paris, France", "the Latin Quarter, Paris, France")
+  - "city" — a city, town, or village (e.g. "Paris, France", "Stratford-upon-Avon, England")
+  - "region" — a state, province, county, or sub-national region (e.g. "Tuscany, Italy", "Bavaria, Germany")
+  - "country" — a country or nation (e.g. "Spain", "France")
+  - "supranational" — a multi-country area, subcontinent, or continent (e.g. "Scandinavia", "the Holy Roman Empire")
 
 Return ONLY a JSON array sorted chronologically. Use negative years for BCE dates (e.g., -0043 for 44 BC). Be conservative with confidence levels. If dates are uncertain, use wider ranges and lower precision.
 
 Biographical text:
-{body_text[:8000]}"""
+{body_text[:10000]}"""
 
 
 def _call_gemini(api_key, prompt, config):
@@ -315,24 +364,34 @@ def _build_chunk_prompt(person_name, chunk_text, chunk_num, total_chunks):
     return f"""You are extracting location data from a text about the real historical person {person_name}.
 This is chunk {chunk_num} of {total_chunks}.
 
-IMPORTANT: Only extract locations where the REAL person {person_name} actually was in real life.
-Do NOT extract:
-- Fictional locations from novels, plays, or poems
-- Places where fictional characters went (even if the character is based on {person_name})
-- Locations only mentioned in passing or as metaphors
-- Places from works of fiction authored by {person_name}
+CRITICAL RULES — only extract locations where {person_name} was PHYSICALLY PRESENT:
+- Places they lived, visited, traveled through, worked, studied, fought, or died.
+- All dates must fall within the person's actual lifetime.
+- Be as SPECIFIC as possible: prefer building/landmark names when known ("Tower of London, London, England" not just "London"), then city, then region. Never use continents.
+- ALWAYS include the modern country name in place_name for geocoding accuracy. Use modern place names: "Thessaloniki, Greece" not "Thessalonica". "Tarsus, Turkey" not "Cilicia". "Rhodes, Greece" not just "Rhodes". For ancient regions, use the nearest modern city: "Iznik, Turkey" not "Nicaea".
+- place_name must be ONLY the place name. Never append extra words like dates, prepositions, or descriptions. WRONG: "Rome on", "Sicily for". CORRECT: "Rome, Italy", "Sicily, Italy".
+- Be PRECISE with dates: prefer exact dates or months over years or decades.
 
-For each real-life location where {person_name} was physically present, provide a JSON object with:
-- "place_name": full place name with country/region (e.g. "Florence, Italy")
+Do NOT extract:
+- Places merely mentioned in the text that {person_name} did not personally visit
+- Locations of events that happened after the person's death (memorials, films, plays, statues, posthumous honors)
+- Fictional locations from novels, plays, or poems
+- Places where other people did things related to {person_name}
+- Locations only mentioned as comparisons, metaphors, or geographic context
+- Continent-level locations (Europe, Asia, Africa) — these are too vague to be useful
+
+For each location provide a JSON object with:
+- "place_name": most specific place name known, with modern country. Prefer buildings/landmarks when known: "Palazzo Madama, Rome, Italy" or "Tower of London, London, England". Otherwise city: "Florence, Italy" — NOT "Europe" or just "Italy". Use modern names. ONLY the place — never append extra words.
 - "date_start": ISO date YYYY-MM-DD (estimate if needed)
 - "date_end": ISO date YYYY-MM-DD
 - "date_precision": "day", "month", "season", "year", "decade", or "approximate"
 - "date_display": human-readable date string
-- "description": 1-2 sentence description of what happened there
+- "description": 1-2 sentence description of what they were doing there
 - "confidence": "certain", "probable", "possible", or "speculative"
+- "location_size": classify the geographic scale — one of "building" (specific structure/address/landmark), "district" (neighborhood/campus/small area), "city" (city/town/village), "region" (state/province/county), "country" (nation), or "supranational" (multi-country area/continent)
 - "source_text": the exact quote (1-2 sentences) from the text that supports this location claim
 
-Return ONLY a JSON array. If no real-life locations found, return [].
+Return ONLY a JSON array. If no qualifying locations found, return [].
 Use negative years for BCE dates (e.g., -0044 for 44 BC).
 
 Text:
@@ -476,6 +535,133 @@ def extract_locations_from_chunks(person_name, full_text, provider='gemini',
     return all_locations
 
 
+def validate_datapoints(person_name, datapoints, provider='gemini',
+                        birth_info='', death_info=''):
+    """Use the LLM to validate extracted datapoints before database insertion.
+
+    Sends the list of datapoints to the LLM and asks it to flag ones that
+    are wrong, posthumous, too vague, about someone else, or fictional.
+
+    Args:
+        person_name: The person these datapoints are about
+        datapoints: List of datapoint dicts (with place_name, date_start, etc.)
+        provider: LLM provider to use (costs 1 API call per batch of ~50)
+        birth_info: Birth date string for context
+        death_info: Death date string for context
+
+    Returns:
+        Filtered list of datapoints (bad ones removed), or original list
+        if LLM is unavailable.
+    """
+    if not datapoints:
+        return datapoints
+
+    config = PROVIDERS.get(provider)
+    if not config:
+        return datapoints
+
+    api_key = os.environ.get(config['env_key'], '') or os.environ.get(config.get('env_key_alt', ''), '')
+    if not api_key:
+        return datapoints
+
+    if _get_daily_remaining(provider) <= 0:
+        return datapoints
+
+    # Build numbered list of datapoints
+    lines = []
+    for i, dp in enumerate(datapoints):
+        place = dp.get('place_name', '?')
+        date = dp.get('date_display') or dp.get('date_start', '?')
+        desc = (dp.get('description') or '')[:100]
+        lines.append(f"{i+1}. {place} ({date}) — {desc}")
+
+    # Split into batches of 50 to fit in context
+    batch_size = 50
+    all_keep = set()
+
+    for batch_start in range(0, len(lines), batch_size):
+        batch = lines[batch_start:batch_start + batch_size]
+        batch_text = '\n'.join(batch)
+
+        prompt = f"""You are a strict data quality reviewer. {person_name} lived from {birth_info} to {death_info}.
+
+I need you to review each entry below and decide: KEEP or REJECT.
+
+You MUST REJECT an entry if ANY of these are true:
+1. DATE AFTER DEATH: The date is after {death_info}. {person_name} cannot be anywhere after dying. Example: if someone died in 1865, an entry dated 1922 MUST be rejected.
+2. NOT PHYSICALLY PRESENT: {person_name} was not personally at this place. Reject memorials, statues, films, plays, books ABOUT the person, posthumous honors, things named after them.
+3. TOO VAGUE: The place is a continent or broad region (Europe, Asia, Africa, North America, Mediterranean). We need specific cities or towns.
+4. NOT A REAL PLACE: The "place" is actually a person's name, surname, institution name, or abstract concept.
+5. ABOUT SOMEONE ELSE: The entry is about a relative, ancestor, or descendant — not {person_name} themselves.
+
+Examples of entries that MUST be rejected:
+- "Washington, D.C. (1922) — Lincoln Memorial dedicated" → REJECT (posthumous, Lincoln died 1865)
+- "Illinois (1938) — Play about Lincoln won Pulitzer" → REJECT (posthumous + not physically present)
+- "Europe (1830) — Active in Europe" → REJECT (too vague)
+- "Newton (1687) — Newton published Principia" → REJECT (person's name, not a place)
+
+Return a JSON array:
+{{"number": 1, "verdict": "keep"}}
+{{"number": 2, "verdict": "reject", "reason": "posthumous - date 1922 is after death 1865"}}
+
+Entries to review:
+{batch_text}"""
+
+        global _last_request_time
+        now = time.time()
+        wait = config['rate_limit_sleep'] - (now - _last_request_time)
+        if wait > 0:
+            time.sleep(wait)
+        _last_request_time = time.time()
+
+        try:
+            if provider.startswith('gemini'):
+                text = _call_gemini(api_key, prompt, config)
+            else:
+                text = _call_openai_compatible(api_key, prompt, config)
+            _increment_daily(provider)
+
+            text = text.strip()
+            if '```json' in text:
+                text = text.split('```json')[1].split('```')[0].strip()
+            elif '```' in text:
+                text = text.split('```')[1].split('```')[0].strip()
+
+            parsed = json.loads(text)
+            if isinstance(parsed, dict):
+                for v in parsed.values():
+                    if isinstance(v, list):
+                        parsed = v
+                        break
+
+            if isinstance(parsed, list):
+                for item in parsed:
+                    num = item.get('number', 0)
+                    verdict = item.get('verdict', '').lower()
+                    # Convert from batch-relative to absolute index
+                    abs_idx = batch_start + num - 1
+                    if verdict == 'keep' and 0 <= abs_idx < len(datapoints):
+                        all_keep.add(abs_idx)
+                    elif verdict == 'reject':
+                        reason = item.get('reason', '?')
+                        if 0 <= abs_idx < len(datapoints):
+                            dp = datapoints[abs_idx]
+                            print(f"    Rejected: {dp.get('place_name')} ({dp.get('date_display', dp.get('date_start'))}) — {reason}")
+
+        except Exception as e:
+            print(f"  Validation error: {e}, keeping all entries in this batch")
+            for j in range(batch_start, min(batch_start + batch_size, len(datapoints))):
+                all_keep.add(j)
+
+    filtered = [dp for i, dp in enumerate(datapoints) if i in all_keep]
+    rejected = len(datapoints) - len(filtered)
+    if rejected:
+        print(f"  Validation: kept {len(filtered)}, rejected {rejected}")
+    else:
+        print(f"  Validation: all {len(filtered)} entries passed")
+    return filtered
+
+
 # Source classification taxonomy (based on historiographic practice).
 # Categories that contain real biographical location data:
 SOURCE_CATEGORIES_USEFUL = {
@@ -490,8 +676,9 @@ SOURCE_CATEGORIES_USEFUL = {
     'newspaper_periodical',  # Contemporary news reporting, magazine articles
     'academic_article',      # Peer-reviewed journal articles
     'inscription_artifact',  # Epigraphic/material evidence linking person to place
-    # Legacy categories (backward compat with older registry entries)
+    # Legacy and alias categories (LLMs sometimes use these instead)
     'biography', 'reference',
+    'primary_source', 'secondary_source', 'tertiary_source',
 }
 
 # Categories to reject (no reliable location data):
@@ -529,8 +716,9 @@ def classify_books(person_name, books, provider='gemini'):
         provider: LLM provider to use
 
     Returns:
-        Dict mapping book index (0-based) to category string,
-        or empty dict if LLM is unavailable.
+        Dict mapping book index (0-based) to dict with 'category' and 'score' keys,
+        e.g. {0: {'category': 'scholarly_biography', 'score': 9}}.
+        Returns empty dict if LLM is unavailable.
     """
     if not books:
         return {}
@@ -585,8 +773,16 @@ REJECT (not useful for real-life location extraction):
 - "authored_nonfiction" — non-biographical work written BY {person_name} (scientific treatise, philosophy, theory)
 - "irrelevant" — not about {person_name}, or about a different person with the same name
 
+For each book, also rate its usefulness for extracting real-life location data about {person_name} on a scale of 1-10:
+  10 = dedicated biography or personal letters/diary — rich in specific places and dates
+   8 = scholarly biography or travel account — reliable location data throughout
+   6 = popular biography or reference work — some useful location mentions
+   4 = tangentially related — few location mentions, mostly about other topics
+   2 = authored work or fiction — might contain incidental biographical context
+   1 = completely irrelevant or wrong person
+
 Return a JSON array with one object per book:
-{{"number": 1, "category": "scholarly_biography"}}
+{{"number": 1, "category": "scholarly_biography", "score": 9}}
 
 Books:
 {book_list}"""
@@ -626,8 +822,12 @@ Books:
         for item in parsed:
             num = item.get('number', 0)
             cat = item.get('category', 'irrelevant').lower()
+            try:
+                score = int(item.get('score', 0))
+            except (ValueError, TypeError):
+                score = 0
             if 1 <= num <= len(books):
-                result[num - 1] = cat  # 0-based index
+                result[num - 1] = {'category': cat, 'score': score}
 
         return result
 
@@ -636,26 +836,35 @@ Books:
         return {}
 
 
-def filter_books_by_relevance(person_name, books, provider='gemini'):
+DEFAULT_MIN_SCORE = 6
+
+def filter_books_by_relevance(person_name, books, provider='gemini', min_score=None):
     """Classify books and return only the useful ones.
 
-    Wrapper around classify_books() for backward compatibility.
+    Filters by both category (must be in SOURCE_CATEGORIES_USEFUL) and
+    score (must be >= min_score, default 6).
     """
+    if min_score is None:
+        min_score = DEFAULT_MIN_SCORE
+
     classifications = classify_books(person_name, books, provider)
     if not classifications:
         return books
 
     filtered = []
     for i, b in enumerate(books):
-        cat = classifications.get(i, '')
-        if cat in SOURCE_CATEGORIES_USEFUL:
+        info = classifications.get(i, {})
+        cat = info.get('category', '') if isinstance(info, dict) else info
+        score = info.get('score', 0) if isinstance(info, dict) else 0
+        if cat in SOURCE_CATEGORIES_USEFUL and score >= min_score:
             filtered.append(b)
         else:
             title = b.get('title', '?')
-            print(f"    Skipping #{i+1} \"{title}\" ({cat})")
+            reason = cat if cat not in SOURCE_CATEGORIES_USEFUL else f'score {score} < {min_score}'
+            print(f"    Skipping #{i+1} \"{title}\" ({reason})")
 
     print(f"  Book filter: {len(filtered)} useful of {len(books)} "
-          f"({len(books) - len(filtered)} filtered out)")
+          f"({len(books) - len(filtered)} filtered out, min_score={min_score})")
     return filtered
 
 
@@ -713,6 +922,7 @@ def ingest_person(person_name=None, wikipedia_url=None, provider='gemini',
             'date_display': loc.get('date_display', ''),
             'description': loc.get('description', ''),
             'confidence': loc.get('confidence', 'probable'),
+            'location_size': loc.get('location_size'),
             'sources': [{
                 'title': f'{PROVIDERS[provider]["name"]} extraction from Wikipedia: {page["name"]}',
                 'url': page['wikipedia_url'],

@@ -100,6 +100,17 @@ IGNORE_PLACES = {
     'autobiography', 'bibliography', 'biography',
 }
 
+# Phrases indicating posthumous/legacy context — not physical presence
+POSTHUMOUS_INDICATORS = re.compile(
+    r'\b(?:named after|statue|memorial|monument|museum|film|movie|play|'
+    r'musical|opera|TV|television|series|documentary|biography|biopic|'
+    r'novel about|book about|award|prize|honor|honour|commemorate|celebrate|'
+    r'tribute|legacy|reputation|influence|inspired|adapted|portrayed|'
+    r'depicted|remembered|posthumous|renamed|dedicated to|Pulitzer|Oscar|'
+    r'Emmy|Tony|Nobel)\b',
+    re.IGNORECASE
+)
+
 
 def _is_valid_place(place):
     """Check if extracted text looks like a real place name."""
@@ -285,6 +296,13 @@ def extract_locations_from_text(text, person_name):
             if not _is_valid_place(place):
                 continue
 
+            # Skip if surrounding text is about posthumous legacy
+            ctx_start = max(0, m.start() - 100)
+            ctx_end = min(len(text), m.end() + 100)
+            context = text[ctx_start:ctx_end]
+            if POSTHUMOUS_INDICATORS.search(context):
+                continue
+
             # Find the nearest date in surrounding text
             date_str = _find_nearby_date(text, m.start(), m.end())
             if date_str:
@@ -301,10 +319,7 @@ def extract_locations_from_text(text, person_name):
                 continue
             seen.add(dedup_key)
 
-            # Capture surrounding text as source_text
-            ctx_start = max(0, m.start() - 100)
-            ctx_end = min(len(text), m.end() + 100)
-            source_text = text[ctx_start:ctx_end].strip()
+            source_text = context.strip()
 
             datapoints.append({
                 'place_name': place,

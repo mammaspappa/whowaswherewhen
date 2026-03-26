@@ -1,0 +1,181 @@
+{
+  "person": {
+    "name": "Tokugawa Ieyasu",
+    "description": "Tokugawa Ieyasu[a][b] (born Matsudaira Takechiyo;[c][d] January 31, 1543 \u2013 June 1, 1616) was a Japanese samurai, daimyo and the founder and first shogun of the Tokugawa shogunate of Japan, which ruled from 1603 until the Meiji Restoration in 1868. He was the third of the three \"Great Unifiers\" of Japan, along with his former lord Oda Nobunaga and fellow Oda subordinate Toyotomi Hideyoshi. The son of a minor daimyo, Ieyasu once lived as a hostage under daimyo Imagawa Yoshimoto on behalf of his father. He later succeeded as daimyo after his father's death, serving as ally, vassal, and general of the Oda clan, and building up his strength under Oda Nobunaga.",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Tokugawa_Ieyasu",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Tokugawa_Ieyasu2.JPG/250px-Tokugawa_Ieyasu2.JPG"
+  },
+  "datapoints": [
+    {
+      "place_name": "Nagoya, Japan",
+      "latitude": 35.1851045,
+      "longitude": 136.8998438,
+      "date_start": "1548-01-01",
+      "date_end": "1551-01-01",
+      "date_precision": "year",
+      "date_display": "1548\u20131551",
+      "description": "Held hostage at the Honsh\u014dji Temple in Nagoya by the Oda clan.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 3.1 Flash Lite extraction from Wikipedia: Tokugawa Ieyasu",
+          "url": "https://en.wikipedia.org/wiki/Tokugawa_Ieyasu",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Sunpu, Japan",
+      "latitude": 34.9792821,
+      "longitude": 138.3829793,
+      "date_start": "1551-01-01",
+      "date_end": "1556-01-01",
+      "date_precision": "year",
+      "date_display": "1551\u20131556",
+      "description": "Taken as a hostage to Sunpu after the Oda-Imagawa negotiation.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 3.1 Flash Lite extraction from Wikipedia: Tokugawa Ieyasu",
+          "url": "https://en.wikipedia.org/wiki/Tokugawa_Ieyasu",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Okazaki, Japan",
+      "latitude": 34.9548784,
+      "longitude": 137.1728226,
+      "date_start": "1556-01-01",
+      "date_end": "1556-12-31",
+      "date_precision": "year",
+      "date_display": "1556",
+      "description": "Briefly visited Okazaki to pay respects to his father's tomb and receive homage from retainers.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 3.1 Flash Lite extraction from Wikipedia: Tokugawa Ieyasu",
+          "url": "https://en.wikipedia.org/wiki/Tokugawa_Ieyasu",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Mikawa Province, Japan",
+      "latitude": 34.78372,
+      "longitude": 137.2256541,
+      "date_start": "1558-01-01",
+      "date_end": "1560-05-01",
+      "date_precision": "year",
+      "date_display": "1558\u20131560",
+      "description": "Returned to Mikawa Province to fight battles against the Oda clan on behalf of the Imagawa.",
+      "confidence": "certain",
+      "location_size": "region",
+      "sources": [
+        {
+          "title": "Gemini 3.1 Flash Lite extraction from Wikipedia: Tokugawa Ieyasu",
+          "url": "https://en.wikipedia.org/wiki/Tokugawa_Ieyasu",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Terabe, Japan",
+      "latitude": 35.613697,
+      "longitude": 138.488635,
+      "date_start": "1558-01-01",
+      "date_end": "1558-12-31",
+      "date_precision": "year",
+      "date_display": "1558",
+      "description": "Fought his first battle at the siege of Terabe.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 3.1 Flash Lite extraction from Wikipedia: Tokugawa Ieyasu",
+          "url": "https://en.wikipedia.org/wiki/Tokugawa_Ieyasu",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Marune, Japan",
+      "latitude": 35.1855581,
+      "longitude": 137.0032982,
+      "date_start": "1560-01-01",
+      "date_end": "1560-12-31",
+      "date_precision": "year",
+      "date_display": "1560",
+      "description": "Led an operation to capture the stronghold of Marune.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 3.1 Flash Lite extraction from Wikipedia: Tokugawa Ieyasu",
+          "url": "https://en.wikipedia.org/wiki/Tokugawa_Ieyasu",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Chiryu, Japan",
+      "latitude": 35.0014831,
+      "longitude": 137.0516484,
+      "date_start": "1560-05-01",
+      "date_end": "1560-05-01",
+      "date_precision": "month",
+      "date_display": "May 1560",
+      "description": "Stopped by the Mizuno clan's forces while traveling back from Odaka.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 3.1 Flash Lite extraction from Wikipedia: Tokugawa Ieyasu",
+          "url": "https://en.wikipedia.org/wiki/Tokugawa_Ieyasu",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Kaminog\u014d, Japan",
+      "latitude": 34.3796141,
+      "longitude": 136.8115036,
+      "date_start": "1561-01-01",
+      "date_end": "1561-12-31",
+      "date_precision": "year",
+      "date_display": "1561",
+      "description": "Attacked and captured Kaminog\u014d castle from the Udono clan.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Gemini 3.1 Flash Lite extraction from Wikipedia: Tokugawa Ieyasu",
+          "url": "https://en.wikipedia.org/wiki/Tokugawa_Ieyasu",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Sunpu Castle, Japan",
+      "latitude": 34.9792821,
+      "longitude": 138.3829793,
+      "date_start": "1616-01-01",
+      "date_end": "1616-06-01",
+      "date_precision": "month",
+      "date_display": "1616",
+      "description": "Lived his final years at Sunpu Castle where he eventually died.",
+      "confidence": "certain",
+      "location_size": "building",
+      "sources": [
+        {
+          "title": "Gemini 3.1 Flash Lite extraction from Wikipedia: Tokugawa Ieyasu",
+          "url": "https://en.wikipedia.org/wiki/Tokugawa_Ieyasu",
+          "source_type": "ai_extracted"
+        }
+      ]
+    }
+  ]
+}

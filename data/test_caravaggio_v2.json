@@ -1,0 +1,162 @@
+{
+  "person": {
+    "name": "Caravaggio",
+    "description": "Michelangelo Merisi da Caravaggio[a] (also Michele Angelo Merigi or Amerighi da Caravaggio; 29 September 1571 \u2013 18 July 1610), known mononymously as Caravaggio, was an Italian painter active in Rome for most of his artistic life. During the final four years of his life, he moved between Naples, Malta, and Sicily. His paintings have been characterized by art critics as combining a realistic observation of the human state, both physical and emotional, with a dramatic use of lighting, which had a formative influence on Baroque painting.",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Caravaggio",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Bild-Ottavio_Leoni%2C_Caravaggio.jpg/250px-Bild-Ottavio_Leoni%2C_Caravaggio.jpg"
+  },
+  "datapoints": [
+    {
+      "place_name": "Milan, Italy",
+      "latitude": 45.4641943,
+      "longitude": 9.1896346,
+      "date_start": "1571-09-29",
+      "date_end": "1576-12-31",
+      "date_precision": "year",
+      "date_display": "1571 \u2013 1576",
+      "description": "Born and lived in Milan until age 5.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Kimi K2) extraction from Wikipedia: Caravaggio",
+          "url": "https://en.wikipedia.org/wiki/Caravaggio",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Caravaggio, Italy",
+      "latitude": 45.4972605,
+      "longitude": 9.6437404,
+      "date_start": "1576-01-01",
+      "date_end": "1592-12-31",
+      "date_precision": "year",
+      "date_display": "1576 \u2013 1592",
+      "description": "Family fled plague; father and grandfather died here 1577. Grew up and trained locally.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Kimi K2) extraction from Wikipedia: Caravaggio",
+          "url": "https://en.wikipedia.org/wiki/Caravaggio",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Rome, Italy",
+      "latitude": 41.8933203,
+      "longitude": 12.4829321,
+      "date_start": "1592-01-01",
+      "date_end": "1606-05-28",
+      "date_precision": "year",
+      "date_display": "1592 \u2013 May 1606",
+      "description": "Arrived penniless; painted for Cesari, then del Monte; gained fame and Church commissions.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Kimi K2) extraction from Wikipedia: Caravaggio",
+          "url": "https://en.wikipedia.org/wiki/Caravaggio",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Naples, Italy",
+      "latitude": 40.8358846,
+      "longitude": 14.2487679,
+      "date_start": "1606-05-29",
+      "date_end": "1607-12-31",
+      "date_precision": "year",
+      "date_display": "late 1606 \u2013 1607",
+      "description": "Fled Rome after killing Tomassoni; re-established himself as leading painter.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Kimi K2) extraction from Wikipedia: Caravaggio",
+          "url": "https://en.wikipedia.org/wiki/Caravaggio",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Valletta, Malta",
+      "latitude": 35.8989979,
+      "longitude": 14.5136607,
+      "date_start": "1607-01-01",
+      "date_end": "1608-10-01",
+      "date_precision": "year",
+      "date_display": "1607 \u2013 Oct 1608",
+      "description": "Sought papal pardon; joined Knights of St John; painted and was imprisoned here.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Kimi K2) extraction from Wikipedia: Caravaggio",
+          "url": "https://en.wikipedia.org/wiki/Caravaggio",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Sicily, Italy",
+      "latitude": 37.587794,
+      "longitude": 14.155048,
+      "date_start": "1608-10-01",
+      "date_end": "1609-09-30",
+      "date_precision": "year",
+      "date_display": "Oct 1608 \u2013 Sep 1609",
+      "description": "Escaped Malta; painted in Syracuse, Messina, and elsewhere on the island.",
+      "confidence": "certain",
+      "location_size": "region",
+      "sources": [
+        {
+          "title": "Groq (Kimi K2) extraction from Wikipedia: Caravaggio",
+          "url": "https://en.wikipedia.org/wiki/Caravaggio",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Naples, Italy",
+      "latitude": 40.8358846,
+      "longitude": 14.2487679,
+      "date_start": "1609-10-01",
+      "date_end": "1610-07-10",
+      "date_precision": "month",
+      "date_display": "Oct 1609 \u2013 Jul 1610",
+      "description": "Returned; survived disfiguring assault while awaiting papal pardon.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Kimi K2) extraction from Wikipedia: Caravaggio",
+          "url": "https://en.wikipedia.org/wiki/Caravaggio",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Porto Ercole, Italy",
+      "latitude": 42.3959698,
+      "longitude": 11.2025043,
+      "date_start": "1610-07-10",
+      "date_end": "1610-07-18",
+      "date_precision": "day",
+      "date_display": "10 \u2013 18 Jul 1610",
+      "description": "Died of fever (or possible murder/poisoning) while traveling from Naples to Rome.",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Kimi K2) extraction from Wikipedia: Caravaggio",
+          "url": "https://en.wikipedia.org/wiki/Caravaggio",
+          "source_type": "ai_extracted"
+        }
+      ]
+    }
+  ]
+}

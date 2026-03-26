@@ -54,10 +54,12 @@ def get_db():
     return db
 
 
-def import_data(data, dry_run=False):
+def import_data(data, dry_run=False, validate_with_llm=None):
     """Import a person + datapoints dict into the database.
 
     data should have the shape: {"person": {...}, "datapoints": [...]}
+    If validate_with_llm is set to a provider name (e.g. 'gemini-3.1'),
+    the datapoints are sent to the LLM for validation before insertion.
     Returns (inserted_count, skipped_count) or (0, 0) on error.
     """
     person_data = data.get('person')
@@ -109,6 +111,20 @@ def import_data(data, dry_run=False):
     else:
         existing_dp = set()
 
+    # Optional LLM validation pass
+    if validate_with_llm and datapoints:
+        try:
+            from ingest.free.free_llm_extract import validate_datapoints
+            print(f"  Validating {len(datapoints)} datapoints with {validate_with_llm}...")
+            datapoints = validate_datapoints(
+                person_data['name'], datapoints,
+                provider=validate_with_llm,
+                birth_info=person_data.get('birth_date_display', ''),
+                death_info=person_data.get('death_date_display', ''),
+            )
+        except Exception as e:
+            print(f"  Validation error: {e}, proceeding without validation")
+
     inserted = 0
     skipped = 0
     geocoded = 0
@@ -123,6 +139,21 @@ def import_data(data, dry_run=False):
         ds = dp.get('date_start', '')
         de = dp.get('date_end', ds)
 
+        # Normalize dates: handle integers (1212 → "1212-01-01"),
+        # year-only strings ("1212" → "1212-01-01"), and None
+        for date_key in ('date_start', 'date_end'):
+            val = dp.get(date_key)
+            if val is None:
+                continue
+            if isinstance(val, (int, float)):
+                val = str(int(val))
+            val = str(val).strip()
+            if val and len(val) == 4 and val.lstrip('-').isdigit():
+                val = f"{val}-01-01"
+            dp[date_key] = val
+        ds = dp.get('date_start', '')
+        de = dp.get('date_end', ds)
+
         if not ds:
             errors.append(f"  Datapoint {i} ({place}): missing date_start")
             continue
@@ -130,6 +161,53 @@ def import_data(data, dry_run=False):
         # Dedup check
         if (place, ds) in existing_dp:
             skipped += 1
+            continue
+
+        # Lifetime check: skip entries dated after death
+        death = person_data.get('death_date_start', '')
+        if death:
+            if death.startswith('-') and not ds.startswith('-'):
+                # Person died BCE but entry is CE — clearly wrong
+                errors.append(f"  Datapoint {i} ({place}): date {ds} is CE but person died {death} BCE")
+                continue
+            elif not death.startswith('-') and not ds.startswith('-'):
+                # Both CE — simple string comparison works
+                if ds[:4] > death[:4]:
+                    errors.append(f"  Datapoint {i} ({place}): date {ds} is after death {death}")
+                    continue
+
+        # Normalize location_size: map common LLM variants to valid values
+        VALID_LOCATION_SIZES = {'building', 'district', 'city', 'region', 'country', 'supranational'}
+        LOCATION_SIZE_ALIASES = {
+            'landmark': 'building', 'monument': 'building', 'site': 'building',
+            'structure': 'building', 'address': 'building', 'estate': 'building',
+            'neighborhood': 'district', 'quarter': 'district', 'campus': 'district',
+            'town': 'city', 'village': 'city', 'settlement': 'city',
+            'province': 'region', 'state': 'region', 'county': 'region',
+            'nation': 'country', 'empire': 'supranational', 'continent': 'supranational',
+        }
+        loc_size = dp.get('location_size')
+        if loc_size and loc_size not in VALID_LOCATION_SIZES:
+            mapped = LOCATION_SIZE_ALIASES.get(loc_size.lower())
+            if mapped:
+                dp['location_size'] = mapped
+            else:
+                dp['location_size'] = None  # Unknown, clear it
+
+        # Vague location check: reject continents and broad regions
+        VAGUE_LOCATIONS = {
+            'europe', 'asia', 'africa', 'north america', 'south america',
+            'central america', 'oceania', 'antarctica', 'middle east',
+            'far east', 'western europe', 'eastern europe', 'central asia',
+            'southeast asia', 'east asia', 'south asia', 'sub-saharan africa',
+            'north africa', 'scandinavia', 'british isles', 'iberian peninsula',
+            'mediterranean', 'the americas', 'new world', 'old world',
+            'earth', 'world', 'globe',
+            # Country abbreviations (too vague; the person was at a specific city)
+            'u.s.', 'us', 'uk', 'ussr', 'u.k.', 'u.s.s.r.',
+        }
+        if place.lower() in VAGUE_LOCATIONS:
+            errors.append(f"  Datapoint {i} ({place}): too vague (continent/region)")
             continue
 
         # Geocode if needed
@@ -155,14 +233,15 @@ def import_data(data, dry_run=False):
         w_cur = db.execute(
             "INSERT INTO whereabouts (person_id, place_name, latitude, longitude, "
             "date_start, date_end, date_precision, date_display, description, confidence, "
-            "source_text, extraction_method, extraction_model, extracted_at, created_by, "
+            "location_size, source_text, extraction_method, extraction_model, extracted_at, created_by, "
             "raw_date_text, raw_place_text, geocode_source, notes) "
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             (person_id, place, lat, lon, ds, de,
              dp.get('date_precision', 'year'),
              dp.get('date_display'),
              dp.get('description'),
              dp.get('confidence', 'probable'),
+             dp.get('location_size'),
              dp.get('source_text'),
              dp.get('extraction_method'),
              dp.get('extraction_model'),

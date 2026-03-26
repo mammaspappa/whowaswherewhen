@@ -28,7 +28,7 @@ REGISTRY_PATH = os.path.join(os.path.dirname(__file__), '..', '..', 'data', 'boo
 
 FIELDS = [
     'source', 'person', 'title', 'author', 'url', 'identifier',
-    'discovered_at', 'relevance', 'status', 'method', 'datapoints', 'notes',
+    'discovered_at', 'relevance', 'score', 'status', 'method', 'datapoints', 'notes',
 ]
 
 # Relevance categories that are useful for extraction.
@@ -89,21 +89,30 @@ def _find_row(rows, source, identifier):
 
 
 def log_discovery(source, person, title, author, url, identifier,
-                  relevance='', notes=''):
+                  relevance='', score='', notes=''):
     """Log a newly discovered book. Skips if already in the registry.
+
+    Args:
+        score: Usefulness score 1-10 from LLM (10 = most useful).
+               Books with score 0 or empty are unscored.
 
     Returns True if this is a new discovery, False if already known.
     """
     rows = _read_all()
     idx = _find_row(rows, source, identifier)
     if idx is not None:
-        # Update relevance if it was empty and now we have one
+        # Update relevance/score if they were empty
+        updated = False
         if relevance and not rows[idx].get('relevance'):
             rows[idx]['relevance'] = relevance
-            # Auto-reject fiction/irrelevant
             if relevance not in USEFUL_RELEVANCE and rows[idx]['status'] == 'pending':
                 rows[idx]['status'] = 'rejected'
                 rows[idx]['notes'] = f'auto-rejected: {relevance}'
+            updated = True
+        if score and not rows[idx].get('score'):
+            rows[idx]['score'] = str(score)
+            updated = True
+        if updated:
             _write_all(rows)
         return False
 
@@ -123,6 +132,7 @@ def log_discovery(source, person, title, author, url, identifier,
         'identifier': str(identifier),
         'discovered_at': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
         'relevance': relevance,
+        'score': str(score) if score else '',
         'status': status,
         'method': '',
         'datapoints': '0',
@@ -157,14 +167,29 @@ def is_ingested(source, identifier):
     return rows[idx]['status'] == 'ingested'
 
 
-def get_pending(source=None, person=None):
-    """Get all pending (not yet ingested, not rejected) books."""
+def get_pending(source=None, person=None, min_score=None):
+    """Get all pending (not yet ingested, not rejected) books.
+
+    Args:
+        min_score: If set, only return books with score >= this value.
+                   Books without a score are excluded when min_score is set.
+    """
     rows = _read_all()
     pending = [r for r in rows if r['status'] in ('pending', 'approved')]
     if source:
         pending = [r for r in pending if r['source'] == source]
     if person:
         pending = [r for r in pending if r['person'].lower() == person.lower()]
+    if min_score is not None:
+        filtered = []
+        for r in pending:
+            try:
+                s = int(r.get('score', 0) or 0)
+            except (ValueError, TypeError):
+                s = 0
+            if s >= min_score:
+                filtered.append(r)
+        pending = filtered
     return pending
 
 
@@ -225,13 +250,14 @@ def main_action(action='summary', source=None, person=None):
             rows = [r for r in rows if r['source'] == source]
         if person:
             rows = [r for r in rows if r['person'].lower() == person.lower()]
-        print(f"{'Status':<10} {'Relevance':<12} {'Source':<12} {'Person':<22} {'Title':<38} {'DP':>4} {'Method':<10}")
-        print('-' * 112)
+        print(f"{'Status':<10} {'Score':>5} {'Relevance':<14} {'Source':<12} {'Person':<20} {'Title':<36} {'DP':>4} {'Method':<10}")
+        print('-' * 115)
         for r in rows:
-            title = r['title'][:36] + '..' if len(r['title']) > 38 else r['title']
-            person_col = r['person'][:20] + '..' if len(r['person']) > 22 else r['person']
+            title = r['title'][:34] + '..' if len(r['title']) > 36 else r['title']
+            person_col = r['person'][:18] + '..' if len(r['person']) > 20 else r['person']
             rel = r.get('relevance', '') or '-'
-            print(f"{r['status']:<10} {rel:<12} {r['source']:<12} {person_col:<22} {title:<38} {r.get('datapoints', '0'):>4} {r.get('method', ''):<10}")
+            score = r.get('score', '') or '-'
+            print(f"{r['status']:<10} {score:>5} {rel:<14} {r['source']:<12} {person_col:<20} {title:<36} {r.get('datapoints', '0'):>4} {r.get('method', ''):<10}")
     elif action == 'pending':
         pending = get_pending(source=source, person=person)
         if not pending:

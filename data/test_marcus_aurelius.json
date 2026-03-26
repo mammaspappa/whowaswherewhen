@@ -1,0 +1,143 @@
+{
+  "person": {
+    "name": "Marcus Aurelius",
+    "description": "Marcus Aurelius Antoninus (/\u0254\u02d0\u02c8ri\u02d0li\u0259s/ or-EE-lee-\u0259s; Latin: [\u02c8ma\u02d0rk\u028as au\u032f\u02c8re\u02d0li.us anto\u02d0\u02c8ni\u02d0n\u028as]; 26 April 121 \u2013 17 March 180) was Roman emperor from 161 to 180 and a Stoic philosopher. He was a member of the Nerva\u2013Antonine dynasty, the last of the rulers later known as the Five Good Emperors and the last emperor of the Pax Romana, an age of relative peace, calm, and stability for the Roman Empire lasting from 27 BC to 180 AD. He served as Roman consul in 140, 145, and 161.",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Marcus_Aurelius",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/MSR-ra-61-b-1-DM.jpg/250px-MSR-ra-61-b-1-DM.jpg"
+  },
+  "datapoints": [
+    {
+      "place_name": "Rome, Italy",
+      "latitude": 41.8933203,
+      "longitude": 12.4829321,
+      "date_start": "0121-04-26",
+      "date_end": "0161-00-00",
+      "date_precision": "day",
+      "date_display": "26 April 121",
+      "description": "Born and raised in Rome, on the Caelian Hill",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 3.3 70B) extraction from Wikipedia: Marcus Aurelius",
+          "url": "https://en.wikipedia.org/wiki/Marcus_Aurelius",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Tivoli, Italy",
+      "latitude": 41.960922,
+      "longitude": 12.798884,
+      "date_start": "0136-00-00",
+      "date_end": "0136-00-00",
+      "date_precision": "year",
+      "date_display": "136",
+      "description": "Visited or heard about Hadrian's villa where he had a haemorrhage",
+      "confidence": "probable",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 3.3 70B) extraction from Wikipedia: Marcus Aurelius",
+          "url": "https://en.wikipedia.org/wiki/Marcus_Aurelius",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Rome, Italy",
+      "latitude": 41.8933203,
+      "longitude": 12.4829321,
+      "date_start": "0140-00-00",
+      "date_end": "0140-00-00",
+      "date_precision": "year",
+      "date_display": "140",
+      "description": "Served as Roman consul",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 3.3 70B) extraction from Wikipedia: Marcus Aurelius",
+          "url": "https://en.wikipedia.org/wiki/Marcus_Aurelius",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Rome, Italy",
+      "latitude": 41.8933203,
+      "longitude": 12.4829321,
+      "date_start": "0145-00-00",
+      "date_end": "0145-00-00",
+      "date_precision": "year",
+      "date_display": "145",
+      "description": "Served as Roman consul, married Antoninus's daughter Faustina",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 3.3 70B) extraction from Wikipedia: Marcus Aurelius",
+          "url": "https://en.wikipedia.org/wiki/Marcus_Aurelius",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Rome, Italy",
+      "latitude": 41.8933203,
+      "longitude": 12.4829321,
+      "date_start": "0161-00-00",
+      "date_end": "0180-00-00",
+      "date_precision": "year",
+      "date_display": "161-180",
+      "description": "Reigned as Roman emperor",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 3.3 70B) extraction from Wikipedia: Marcus Aurelius",
+          "url": "https://en.wikipedia.org/wiki/Marcus_Aurelius",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Rhine River, Germany",
+      "latitude": 50.4693743,
+      "longitude": 7.3499986,
+      "date_start": "0161-00-00",
+      "date_end": "0180-00-00",
+      "date_precision": "year",
+      "date_display": "161-180",
+      "description": "Defeated Germanic tribes near the Rhine River",
+      "confidence": "probable",
+      "location_size": "region",
+      "sources": [
+        {
+          "title": "Groq (Llama 3.3 70B) extraction from Wikipedia: Marcus Aurelius",
+          "url": "https://en.wikipedia.org/wiki/Marcus_Aurelius",
+          "source_type": "ai_extracted"
+        }
+      ]
+    },
+    {
+      "place_name": "Vindobona, Austria",
+      "latitude": 48.2083537,
+      "longitude": 16.3725042,
+      "date_start": "0180-03-00",
+      "date_end": "0180-03-17",
+      "date_precision": "month",
+      "date_display": "March 180",
+      "description": "Died while on campaign",
+      "confidence": "certain",
+      "location_size": "city",
+      "sources": [
+        {
+          "title": "Groq (Llama 3.3 70B) extraction from Wikipedia: Marcus Aurelius",
+          "url": "https://en.wikipedia.org/wiki/Marcus_Aurelius",
+          "source_type": "ai_extracted"
+        }
+      ]
+    }
+  ]
+}

@@ -32,6 +32,9 @@ CREATE TABLE IF NOT EXISTS whereabouts (
     description     TEXT,
     confidence      TEXT NOT NULL DEFAULT 'probable'
                     CHECK(confidence IN ('certain','probable','possible','speculative')),
+    location_size   TEXT
+                    CHECK(location_size IS NULL OR location_size IN
+                        ('building','district','city','region','country','supranational')),
     -- Provenance: how and when this record was created
     source_text     TEXT,           -- excerpt from the original text this is based on
     extraction_method TEXT,         -- how it was extracted: wikidata, pattern, ner, category, manual
